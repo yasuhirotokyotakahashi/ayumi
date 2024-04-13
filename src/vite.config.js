@@ -10,4 +10,10 @@ export default defineConfig({
         }),
         vue(),
     ],
+    server: {
+        host: true,
+        hmr: {
+            host: 'localhost',
+        },
+    },
 });

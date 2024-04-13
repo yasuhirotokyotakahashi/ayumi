@@ -2,7 +2,7 @@
 export default {
     data() {
         return {
-            greeting: "Hello World2!",
+            greeting: "Hello World5!",
         };
     },
 };
