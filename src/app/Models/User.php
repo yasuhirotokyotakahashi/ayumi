@@ -43,4 +43,26 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    // Itemsテーブルとのリレーション
+    public function items()
+    {
+        return $this->hasMany(Item::class);
+    }
+    public function likes()
+    {
+        return $this->belongsToMany(Item::class, 'likes');
+    }
+    public function comments()
+    {
+        return $this->belongsToMany(Item::class, 'comments')->withPivot('comment');
+    }
+    public function soldItems()
+    {
+        return $this->belongsToMany(Item::class, 'sold_items');
+    }
+    // Profilesテーブルとのリレーション
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
 }

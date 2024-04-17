@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Category;
 use App\Models\Condition;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Storage;
 
@@ -19,16 +20,14 @@ class ItemFactory extends Factory
      */
     public function definition(): array
     {
-        // ディレクトリがなければ作成
-        if (!Storage::exists('public/images')) {
-            Storage::makeDirectory('public/images');
-        }
         return [
-            'name' => $this->faker->name,
+            'name' => fake()->company(),
             'price' => $this->faker->numberBetween(100, 10000),
-            'description' => $this->faker->sentence,
+            'description' => fake()->realText(10),
             'img_url' => $this->faker->imageUrl(),
-            'user_id' => $this->faker->numberBetween(1, 100),
+            'user_id' => function () {
+                return User::inRandomOrder()->first()->id;
+            },
             'category_id' => function () {
                 return Category::inRandomOrder()->first()->id;
             },
