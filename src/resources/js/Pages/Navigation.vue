@@ -22,9 +22,9 @@
               >出品</NavLink
             >
             <NavLink
-              :href="route('purchase.address')"
+              :href="route('user.mypage')"
               class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-              >プロフィールへ</NavLink
+              >マイページへ</NavLink
             >
             <NavLink
               :href="route('items.index')"

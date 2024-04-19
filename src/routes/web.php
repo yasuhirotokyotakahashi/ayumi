@@ -59,7 +59,7 @@ Route::get('/sell', [ItemController::class, 'sellView'])->name('item.sellView');
 Route::post('/sell/create', [ItemController::class, 'sellCreate'])->name('item.sellCreate');
 Route::get('/mypage', [UserController::class, 'mypage'])->name('user.mypage');
 Route::get('/mypage/profile', [UserController::class, 'profile'])->name('user.profile');
-Route::post('/mypage/profile', [UserController::class, 'uodateProfile'])->name('user.updateProfile');
+Route::post('/mypage/profile/{profile:id}', [UserController::class, 'updateProfile'])->name('user.updateProfile');
 
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
 
@@ -71,8 +71,8 @@ Route::get('/admin', [AdminController::class, 'index'])->name('admin.user');
 Route::delete('/admin/{user:id}', [AdminController::class, 'delete'])->name('user.delete');
 
 Route::get('/shop', [StoreRepresentativeController::class, 'inviteStaff'])->name('shop.index');
+Route::post('/shop', [StoreRepresentativeController::class, 'assignRole'])->name('shop.assign');
+Route::post('/shop/remove', [StoreRepresentativeController::class, 'removeRole'])->name('shop.remove');
 
-Route::get('/address/test', [PurchaseController::class, 'addressTest'])->name('address.test');
-Route::post('/address/test/{profile:id}', [PurchaseController::class, 'addressUp'])->name('purchase.remakeAddress');
 
 require __DIR__ . '/auth.php';

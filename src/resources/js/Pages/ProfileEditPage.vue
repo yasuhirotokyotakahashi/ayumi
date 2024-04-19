@@ -1,9 +1,11 @@
 <script setup>
 import { useForm } from "@inertiajs/vue3";
 import { Link } from "@inertiajs/vue3";
+import Navigation from "@/Pages/Navigation.vue";
 
 const props = defineProps({
   profile: Object,
+  permissions: Object,
 });
 
 const form = useForm({
@@ -21,6 +23,8 @@ const updateProfile = () => {
 </script>
 
 <template>
+  <div>
+  <div><Navigation /></div>
   <div class="max-w-md mx-auto p-6 bg-white shadow-md rounded-md mt-8">
     <form @submit.prevent="updateProfile">
       <div>
@@ -62,5 +66,6 @@ const updateProfile = () => {
         >戻る</Link
       >
     </form>
+  </div>
   </div>
 </template>

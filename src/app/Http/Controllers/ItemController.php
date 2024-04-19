@@ -25,7 +25,13 @@ class ItemController extends Controller
             // ログインしていない場合はnullを設定するか、必要に応じてデフォルトの名前を設定します
             $userName = null;
         }
-        return Inertia::render('TopPage', ['items' => $items, 'permissions' => $permissions, 'user' => $user,]);
+
+        $unsoldItems = $items->reject(function ($item) {
+            return $item->soldItems()->exists();
+        });
+
+
+        return Inertia::render('TopPage', ['items' => $unsoldItems, 'permissions' => $permissions, 'user' => $user,]);
     }
 
     public function detail($id)

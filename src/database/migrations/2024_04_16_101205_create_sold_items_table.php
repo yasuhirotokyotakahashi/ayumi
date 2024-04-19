@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('item_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
+            $table->timestamp('purchased_at')->nullable(); // 購入日時を保存するカラムを追加
             $table->timestamps();
         });
     }

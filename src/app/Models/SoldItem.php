@@ -9,5 +9,5 @@ class SoldItem extends Model
 {
     use HasFactory;
     protected $table = 'sold_items';
-    protected $fillable = ['user_id', 'item_id'];
+    protected $fillable = ['user_id', 'item_id', 'purchased_at'];
 }

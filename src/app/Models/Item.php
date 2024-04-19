@@ -27,7 +27,7 @@ class Item extends Model
     }
     public function soldItems()
     {
-        return $this->belongsToMany(User::class, 'sold_item');
+        return $this->belongsToMany(User::class, 'sold_items');
     }
     // categoriesテーブルとのリレーション
     public function category()

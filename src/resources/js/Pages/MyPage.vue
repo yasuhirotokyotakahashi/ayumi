@@ -1,6 +1,13 @@
 <template>
+  <div>
+  <div><Navigation /></div>
   <div class="max-w-3xl mx-auto p-6">
     <h1 class="text-3xl font-bold mb-6">{{ user.name }}のマイページ</h1>
+    <NavLink
+              :href="route('user.profile')"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >プロフィール編集画面へ</NavLink
+            >
 
     <div class="flex mb-4 space-x-4">
       <!-- 切り替え用のボタン -->
@@ -46,11 +53,14 @@
       </ul>
     </div>
   </div>
+  </div>
 </template>
 
 <script setup>
 import { usePage } from "@inertiajs/vue3";
 import { ref } from "vue";
+import { Link as NavLink } from "@inertiajs/vue3";
+import Navigation from "@/Pages/Navigation.vue";
 
 defineProps({
   user: Object,

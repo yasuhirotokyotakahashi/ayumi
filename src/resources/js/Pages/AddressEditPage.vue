@@ -15,7 +15,7 @@ const form = useForm({
 
 const updateProfile = () => {
   console.log(form);
-  form.post(route("purchase.remakeAddress", props.profile.id), form.data());
+  form.post(route("user.updateProfile", props.profile.id), form.data());
   // 削除後のリダイレクトなど、必要な処理を追加することができます
 };
 </script>
