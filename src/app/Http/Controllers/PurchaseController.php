@@ -26,21 +26,17 @@ class PurchaseController extends Controller
 
     public function purchase(Item $item)
     {
-
-
         // SoldItem モデルに新しいデータを作成して保存
         SoldItem::create([
             'user_id' => auth()->id(), // ログインユーザーのIDなど、購入したユーザーのIDを指定
             'item_id' => $item->id, // 購入したアイテムのIDを指定
             'purchased_at' => Carbon::now(), // 現在の日時を設定
         ]);
-        return redirect()->route('items.index');
+        return redirect()->route('purchase.address');
     }
-
 
     public function address()
     {
-
         $user = auth()->user();
         $permissions = [];
         if ($user) {
@@ -62,40 +58,45 @@ class PurchaseController extends Controller
         return Inertia::render('ProfileEditPage', ['profile' => $profile, 'permissions' => $permissions,]);
     }
 
-
-
-
     public function updateAddress(Request $request, Profile $profile)
     {
 
-
-        $userId = Auth::id();
-
-
         // 画像アップロード処理
+
         if ($request->file('img') !== null) {
             // 画像を保存するディレクトリを指定
             $image = $request->file('img');
             $filename = $image->getClientOriginalName(); // オリジナルのファイル名を取得
             $path = $image->storeAs('public/images', $filename); // ファイルをstorage/app/public/imagesに保存し、publicディスクを使用
 
-
-
             // 保存された画像へのURLを取得
             $url = asset('storage/' . str_replace('public/', '', $path));
 
-            // Eloquentを使用してデータベースに保存
-            Profile::create([
-                'postcode' => $request->input('postcode'),
-                'address' => $request->input('address'),
-                'building' => $request->input('building'),
-                'img_url' => $url,
-                'user_id' => $userId,
-                // 他のフォームフィールドに対応する項目を追加
-            ]);
+            $user = auth()->user();
+            $profile = $user->profile;
+
+            // プロフィールが存在する場合は更新、存在しない場合は新規作成
+            if ($profile->exists) {
+                $profile->update([
+                    'postcode' => $request->input('postcode'),
+                    'address' => $request->input('address'),
+                    'building' => $request->input('building'),
+                    'img_url' => $url,
+                    // 他のフォームフィールドに対応する項目を追加
+                ]);
+            } else {
+                $userId = Auth::id();
+                Profile::create([
+                    'postcode' => $request->input('postcode'),
+                    'address' => $request->input('address'),
+                    'building' => $request->input('building'),
+                    'img_url' => $url,
+                    'user_id' => $userId,
+                    // 他のフォームフィールドに対応する項目を追加
+                ]);
+            }
 
             // ここに他の Item モデルに対する処理を追加することができます
-
 
             return redirect()->route('items.index');
         }

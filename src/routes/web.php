@@ -41,38 +41,46 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    // 上記はデフォルト
+
+
+    Route::post('/item/like/{item:id}', [LikeController::class, 'create'])->name('like.create');
+    Route::post('/item/unlike/{item:id}', [LikeController::class, 'destroy'])->name('like.destroy');
+    Route::get('/purchase/{item:id}', [PurchaseController::class, 'index'])->name('purchase.index');
+    Route::post('/purchase/{item:id}', [PurchaseController::class, 'purchase'])->name('purchase.purchase');
+    Route::get('/address', [PurchaseController::class, 'address'])->name('purchase.address');
+    Route::post('/address/ok', [PurchaseController::class, 'updateAddress'])->name('purchase.updateAddress');
+
+    Route::get('/mypage', [UserController::class, 'mypage'])->name('user.mypage');
+    Route::get('/mypage/profile', [UserController::class, 'profile'])->name('user.profile');
+    Route::post('/mypage/profile/{profile:id}', [UserController::class, 'updateProfile'])->name('user.updateProfile');
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('/mail', [MailController::class, 'index'])->name('mail.index');
+    Route::post('/mail/confirm', [MailController::class, 'confirm'])->name('mail.confirm');
+    Route::post('/mail', [MailController::class, 'create'])->name('mail.create');
+
+    // 管理者権限のルート
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.user');
+    Route::delete('/admin/{user:id}', [AdminController::class, 'delete'])->name('user.delete');
+    Route::get('/admin/comment', [AdminController::class, 'confirm'])->name('comment.confirm');
+
+    // 店舗代表者のルート
+    Route::get('/shop', [StoreRepresentativeController::class, 'inviteStaff'])->name('shop.index')->middleware(['role:shop_owner']);
+    Route::post('/shop', [StoreRepresentativeController::class, 'assignRole'])->name('shop.assign');
+    Route::post('/shop/remove', [StoreRepresentativeController::class, 'removeRole'])->name('shop.remove');
+
+    // 認証ユーザーのルート
+    Route::get('/comment/{item:id}', [CommentController::class, 'index'])->name('comment.index')->middleware(['role:user']);
+    Route::post('/comment/{item:id}', [CommentController::class, 'create'])->name('comment.create')->middleware(['role:user']);
+    Route::get('/sell', [ItemController::class, 'sellView'])->name('item.sellView')->middleware(['role:user']);
+    Route::post('/sell/create', [ItemController::class, 'sellCreate'])->name('item.sellCreate')->middleware(['role:user']);
 });
 
 // 追加
 
 Route::get('/item', [ItemController::class, 'index'])->name('items.index');
 Route::get('/item/{item:id}', [ItemController::class, 'detail'])->name('item.detail');
-Route::get('/comment/{item:id}', [CommentController::class, 'index'])->name('comment.index');
-Route::post('/comment/{item:id}', [CommentController::class, 'create'])->name('comment.create');
-Route::post('/item/like/{item:id}', [LikeController::class, 'create'])->name('like.create');
-Route::post('/item/unlike/{item:id}', [LikeController::class, 'destroy'])->name('like.destroy');
-Route::get('/purchase/{item:id}', [PurchaseController::class, 'index'])->name('purchase.index');
-Route::post('/purchase/{item:id}', [PurchaseController::class, 'purchase'])->name('purchase.purchase');
-Route::get('/address', [PurchaseController::class, 'address'])->name('purchase.address');
-Route::post('/address/ok', [PurchaseController::class, 'updateAddress'])->name('purchase.updateAddress');
-Route::get('/sell', [ItemController::class, 'sellView'])->name('item.sellView');
-Route::post('/sell/create', [ItemController::class, 'sellCreate'])->name('item.sellCreate');
-Route::get('/mypage', [UserController::class, 'mypage'])->name('user.mypage');
-Route::get('/mypage/profile', [UserController::class, 'profile'])->name('user.profile');
-Route::post('/mypage/profile/{profile:id}', [UserController::class, 'updateProfile'])->name('user.updateProfile');
 
-Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
-
-Route::get('/mail', [MailController::class, 'index'])->name('mail.index');
-Route::post('/mail/confirm', [MailController::class, 'confirm'])->name('mail.confirm');
-Route::post('/mail', [MailController::class, 'create'])->name('mail.create');
-
-Route::get('/admin', [AdminController::class, 'index'])->name('admin.user');
-Route::delete('/admin/{user:id}', [AdminController::class, 'delete'])->name('user.delete');
-
-Route::get('/shop', [StoreRepresentativeController::class, 'inviteStaff'])->name('shop.index');
-Route::post('/shop', [StoreRepresentativeController::class, 'assignRole'])->name('shop.assign');
-Route::post('/shop/remove', [StoreRepresentativeController::class, 'removeRole'])->name('shop.remove');
 
 
 require __DIR__ . '/auth.php';

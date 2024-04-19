@@ -17,21 +17,6 @@
         <div class="hidden sm:flex sm:ml-6 space-x-8">
           <template v-if="$page.props.auth.user">
             <NavLink
-              :href="route('item.sellView')"
-              class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-              >出品</NavLink
-            >
-            <NavLink
-              :href="route('user.mypage')"
-              class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-              >マイページへ</NavLink
-            >
-            <NavLink
-              :href="route('items.index')"
-              class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-              >一覧へ</NavLink
-            >
-            <NavLink
               v-if="
                 $page.props.permissions &&
                 $page.props.permissions.includes('manage_admin')
@@ -50,6 +35,22 @@
               >店舗代表者画面へ</NavLink
             >
             <NavLink
+              :href="route('item.sellView')"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >出品</NavLink
+            >
+            <NavLink
+              :href="route('user.mypage')"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >マイページへ</NavLink
+            >
+            <NavLink
+              :href="route('items.index')"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >一覧へ</NavLink
+            >
+            
+            <NavLink
               :href="route('dashboard')"
               class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
               >ログアウトへ</NavLink
@@ -59,12 +60,17 @@
             <NavLink
               :href="route('items.index')"
               class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-              >一覧へ</NavLink
+              >アイテム一覧へ</NavLink
             >
             <NavLink
               :href="route('login')"
               class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
               >ログインへ</NavLink
+            >
+            <NavLink
+              :href="route('register')"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >会員登録へ</NavLink
             >
           </template>
         </div>

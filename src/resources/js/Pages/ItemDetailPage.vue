@@ -18,12 +18,6 @@ const form = useForm({
 
 const isLiked = ref(props.likedItemIds.includes(props.item.id));
 
-const submitComment = (id) => {
-  console.log(form); // フォームデータをコンソールに表示
-  form.post(route("comment.store", id), form.data());
-  // コメント送信後の処理を追加する場合はここに記述
-};
-
 const deleteItem = (id) => {
   console.log(id);
   form.delete(route("items.delete", id));
@@ -134,12 +128,6 @@ const mailItem = (itemId) => {
       </div>
     </div>
   </div>
-  <!-- コメントフォーム -->
-  <form @submit.prevent="submitComment(item.id)" class="mt-4">
-    <label for="comment" class="block text-sm font-medium text-gray-700">コメント:</label>
-    <textarea id="comment" v-model="form.comment" name="comment" rows="3" class="input-text mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" required></textarea>
-    <button type="submit" class="btn-blue mt-4">コメント投稿</button>
-  </form>
   <!-- 戻るボタン -->
   <Link href="/item" class="block mt-4 bg-gray-300 py-2 px-4 rounded-md text-center">戻る</Link>
 </div>

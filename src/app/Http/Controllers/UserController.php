@@ -16,8 +16,6 @@ class UserController extends Controller
         // ログインしているユーザーの情報を取得
         $user = auth()->user();
 
-
-
         // ユーザーが購入した商品を取得
         $soldItems = $user->soldItems;
 

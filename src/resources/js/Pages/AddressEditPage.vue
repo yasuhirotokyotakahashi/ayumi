@@ -11,6 +11,7 @@ const form = useForm({
   address: props.profile.address,
   building: props.profile.building,
   img: props.profile.img_url,
+  user_id:null,
 });
 
 const updateProfile = () => {

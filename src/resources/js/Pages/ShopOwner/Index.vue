@@ -44,11 +44,10 @@
             class="w-full p-2 border rounded"
           >
             <option
-              v-for="role in roles"
-              :key="role.id"
-              :value="role.id"
+              
+              value="3"
             >
-              {{ role.name }}
+              User
             </option>
           </select>
           <p class="text-gray-600 mt-2">商品の状態:</p>
