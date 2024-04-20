@@ -35,6 +35,10 @@
               >店舗代表者画面へ</NavLink
             >
             <NavLink
+            v-if="
+                $page.props.permissions &&
+                $page.props.permissions.includes('manage_user')
+              "
               :href="route('item.sellView')"
               class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
               >出品</NavLink
@@ -51,10 +55,9 @@
             >
             
             <NavLink
-              :href="route('dashboard')"
-              class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-              >ログアウトへ</NavLink
-            >
+    class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+    @click.prevent="confirmLogout"
+>ログアウトへ</NavLink>
           </template>
           <template v-else>
             <NavLink
@@ -81,4 +84,16 @@
 
 <script setup>
 import { Link as NavLink } from "@inertiajs/vue3";
+import { usePage } from '@inertiajs/inertia-vue3';
+import { useForm } from '@inertiajs/inertia-vue3';
+
+const { $inertia } = usePage();
+const form = useForm();
+
+const confirmLogout = () => {
+    if (confirm("ログアウトしてもよろしいですか？")) {
+        form.post(route('logout'));
+    }
+};
+
 </script>

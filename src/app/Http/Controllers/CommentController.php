@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CommentRequest;
 use App\Models\Comment;
 use App\Models\Item;
 use App\Models\User;
@@ -32,7 +33,7 @@ class CommentController extends Controller
         return Inertia::render('CommentForm', ['item' => $item,]);
     }
 
-    public function create(Request $request, $id)
+    public function create(CommentRequest $request, $id)
     {
 
         // 現在ログインしているユーザーのIDを取得

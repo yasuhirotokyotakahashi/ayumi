@@ -26,4 +26,13 @@ class AddressRequest extends FormRequest
             'address' => 'required',
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'postcode.required' => '郵便番号は必須項目です。',
+            'postcode.numeric' => '郵便番号は数値で入力してください。',
+            'address.required' => '住所は必須項目です。',
+        ];
+    }
 }

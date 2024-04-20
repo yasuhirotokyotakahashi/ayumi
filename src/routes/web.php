@@ -24,18 +24,18 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+// Route::get('/', function () {
+//     return Inertia::render('Welcome', [
+//         'canLogin' => Route::has('login'),
+//         'canRegister' => Route::has('register'),
+//         'laravelVersion' => Application::VERSION,
+//         'phpVersion' => PHP_VERSION,
+//     ]);
+// });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return Inertia::render('Dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -53,21 +53,21 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/mypage', [UserController::class, 'mypage'])->name('user.mypage');
     Route::get('/mypage/profile', [UserController::class, 'profile'])->name('user.profile');
-    Route::post('/mypage/profile/{profile:id}', [UserController::class, 'updateProfile'])->name('user.updateProfile');
+    Route::post('/mypage/profile', [UserController::class, 'updateProfile'])->name('user.updateProfile');
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/mail', [MailController::class, 'index'])->name('mail.index');
     Route::post('/mail/confirm', [MailController::class, 'confirm'])->name('mail.confirm');
     Route::post('/mail', [MailController::class, 'create'])->name('mail.create');
 
     // 管理者権限のルート
-    Route::get('/admin', [AdminController::class, 'index'])->name('admin.user');
-    Route::delete('/admin/{user:id}', [AdminController::class, 'delete'])->name('user.delete');
-    Route::get('/admin/comment', [AdminController::class, 'confirm'])->name('comment.confirm');
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.user')->middleware(['role:admin']);
+    Route::delete('/admin/{user:id}', [AdminController::class, 'delete'])->name('user.delete')->middleware(['role:admin']);
+    Route::get('/admin/comment', [AdminController::class, 'confirm'])->name('comment.confirm')->middleware(['role:admin']);
 
     // 店舗代表者のルート
     Route::get('/shop', [StoreRepresentativeController::class, 'inviteStaff'])->name('shop.index')->middleware(['role:shop_owner']);
-    Route::post('/shop', [StoreRepresentativeController::class, 'assignRole'])->name('shop.assign');
-    Route::post('/shop/remove', [StoreRepresentativeController::class, 'removeRole'])->name('shop.remove');
+    Route::post('/shop', [StoreRepresentativeController::class, 'assignRole'])->name('shop.assign')->middleware(['role:shop_owner']);
+    Route::post('/shop/remove', [StoreRepresentativeController::class, 'removeRole'])->name('shop.remove')->middleware(['role:shop_owner']);
 
     // 認証ユーザーのルート
     Route::get('/comment/{item:id}', [CommentController::class, 'index'])->name('comment.index')->middleware(['role:user']);
@@ -78,7 +78,7 @@ Route::middleware('auth')->group(function () {
 
 // 追加
 
-Route::get('/item', [ItemController::class, 'index'])->name('items.index');
+Route::get('/', [ItemController::class, 'index'])->name('items.index');
 Route::get('/item/{item:id}', [ItemController::class, 'detail'])->name('item.detail');
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AddressRequest;
 use App\Models\Item;
 use App\Models\Profile;
 use App\Models\SoldItem;
@@ -55,14 +56,12 @@ class PurchaseController extends Controller
             $profile->user_id = $userId;
         }
 
-        return Inertia::render('ProfileEditPage', ['profile' => $profile, 'permissions' => $permissions,]);
+        return Inertia::render('DeliveryAddress', ['profile' => $profile, 'permissions' => $permissions,]);
     }
 
-    public function updateAddress(Request $request, Profile $profile)
+    public function updateAddress(AddressRequest $request, Profile $profile)
     {
-
         // 画像アップロード処理
-
         if ($request->file('img') !== null) {
             // 画像を保存するディレクトリを指定
             $image = $request->file('img');
@@ -73,11 +72,12 @@ class PurchaseController extends Controller
             $url = asset('storage/' . str_replace('public/', '', $path));
 
             $user = auth()->user();
-            $profile = $user->profile;
+
 
             // プロフィールが存在する場合は更新、存在しない場合は新規作成
-            if ($profile->exists) {
+            if ($profile = $user->profile) {
                 $profile->update([
+                    'nickname' => $request->input('nickname'),
                     'postcode' => $request->input('postcode'),
                     'address' => $request->input('address'),
                     'building' => $request->input('building'),
@@ -87,6 +87,7 @@ class PurchaseController extends Controller
             } else {
                 $userId = Auth::id();
                 Profile::create([
+                    'nickname' => $request->input('nickname'),
                     'postcode' => $request->input('postcode'),
                     'address' => $request->input('address'),
                     'building' => $request->input('building'),

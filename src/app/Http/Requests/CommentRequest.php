@@ -25,4 +25,13 @@ class CommentRequest extends FormRequest
             'comment' => 'required',
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'comment.required'  => 'コメントは必須項目です。',
+        ];
+    }
+
+
 }

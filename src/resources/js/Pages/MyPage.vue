@@ -1,58 +1,57 @@
 <template>
   <div>
-  <div><Navigation /></div>
-  <div class="max-w-3xl mx-auto p-6">
-    <h1 class="text-3xl font-bold mb-6">{{ user.name }}のマイページ</h1>
-    <NavLink
-              :href="route('user.profile')"
-              class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-              >プロフィール編集画面へ</NavLink
-            >
+    <div><Navigation /></div>
+    <div class="max-w-3xl mx-auto p-6">
+      <h1 class="text-3xl font-bold mb-6">{{ user.name }}のマイページ</h1>
+      <NavLink
+        :href="route('user.profile')"
+        class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+      >プロフィール編集画面へ</NavLink>
 
-    <div class="flex mb-4 space-x-4">
-      <!-- 切り替え用のボタン -->
-      <button
-        @click="toggleDisplay('purchased')"
-        :class="{
-          'bg-blue-500 text-white': display === 'purchased',
-          'bg-gray-200': display !== 'purchased',
-        }"
-        class="px-4 py-2 rounded-md"
-      >
-        購入品一覧
-      </button>
-      <button
-        @click="toggleDisplay('sold')"
-        :class="{
-          'bg-blue-500 text-white': display === 'sold',
-          'bg-gray-200': display !== 'sold',
-        }"
-        class="px-4 py-2 rounded-md"
-      >
-        出品品一覧
-      </button>
-    </div>
+      <div class="flex mb-4 space-x-4">
+        <!-- 切り替え用のボタン -->
+        <button
+          @click="toggleDisplay('purchased')"
+          :class="{
+            'bg-blue-500 text-white': display === 'purchased',
+            'bg-gray-200': display !== 'purchased',
+          }"
+          class="px-4 py-2 rounded-md"
+        >
+          購入品一覧
+        </button>
+        <button
+          @click="toggleDisplay('sold')"
+          :class="{
+            'bg-blue-500 text-white': display === 'sold',
+            'bg-gray-200': display !== 'sold',
+          }"
+          class="px-4 py-2 rounded-md"
+        >
+          出品品一覧
+        </button>
+      </div>
 
-    <!-- 購入品一覧 -->
-    <div v-if="display === 'purchased'" class="mb-8">
-      <h2 class="text-lg font-semibold mb-4">購入品一覧</h2>
-      <ul>
-        <li v-for="item in soldItems" :key="item.id" class="mb-2">
-          {{ item.name }}
-        </li>
-      </ul>
-    </div>
+      <!-- 購入品一覧 -->
+      <div v-if="display === 'purchased'" class="mb-8">
+        <h2 class="text-lg font-semibold mb-4">購入品一覧</h2>
+        <ul>
+          <li v-for="item in soldItems" :key="item.id" class="mb-2">
+            {{ item.name }}
+          </li>
+        </ul>
+      </div>
 
-    <!-- 出品品一覧 -->
-    <div v-else-if="display === 'sold'" class="mb-8">
-      <h2 class="text-lg font-semibold mb-4">出品品一覧</h2>
-      <ul>
-        <li v-for="item in items" :key="item.id" class="mb-2">
-          {{ item.name }}
-        </li>
-      </ul>
+      <!-- 出品品一覧 -->
+      <div v-else-if="display === 'sold'" class="mb-8">
+        <h2 class="text-lg font-semibold mb-4">出品品一覧</h2>
+        <ul>
+          <li v-for="item in items" :key="item.id" class="mb-2">
+            {{ item.name }}
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
   </div>
 </template>
 

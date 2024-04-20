@@ -70,66 +70,66 @@ const mailItem = (itemId) => {
 </script>
 
 <template>
-    <div>
-  <div><Navigation /></div>
-  <div class="max-w-md mx-auto p-6 bg-white shadow-md rounded-md mt-8">
-  <!-- 画像と商品情報の表示 -->
-  <div class="flex flex-col md:flex-row items-center md:items-start justify-between space-y-4 md:space-y-0 md:space-x-8">
-    <!-- 商品画像の表示 -->
-    <div class="md:w-1/3">
-      <img :src="item.img_url" alt="Item Image" class="w-full h-auto" />
+  <div>
+    <div><Navigation /></div>
+    <div class="max-w-md mx-auto p-6 bg-white shadow-md rounded-md mt-8">
+      <!-- 画像と商品情報の表示 -->
+      <div class="flex flex-col md:flex-row items-center md:items-start justify-between space-y-4 md:space-y-0 md:space-x-8">
+        <!-- 商品画像の表示 -->
+        <div class="md:w-1/3">
+          <img :src="item.img_url" alt="Item Image" class="w-full h-auto" />
+        </div>
+        <!-- 商品情報の表示 -->
+        <div class="md:w-2/3 space-y-4">
+          <div>
+            <div class="text-lg font-semibold">{{ item.name }}</div>
+            <div class="text-gray-500">{{ item.price }}</div>
+            <div class="text-gray-500">
+              <span>{{ commentsCount }} コメント</span>
+              <span class="mx-2">|</span>
+              <span>{{ likesCount }} いいね</span>
+            </div>
+          </div>
+          <div class="flex justify-between items-center md:items-start">
+            <div>
+              <button @click="purchaseItem(item.id)" class="btn-blue mr-2">
+                購入する
+              </button>
+              <button @click="commentItem(item.id)" class="btn-blue mr-2">
+                コメントする
+              </button>
+              <button @click="mailItem(item.id)" class="btn-blue mr-2">
+                メールを送る
+              </button>
+              <button @click="confirmLike" class="btn-red flex items-center">
+                <span class="mr-2">
+                  <i :class="[isLiked ? 'fas' : 'far', 'fa-heart']"></i>
+                </span>
+                <span>
+                  {{ isLiked ? "お気に入り解除" : "お気に入り登録" }}
+                </span>
+              </button>
+            </div>
+            <div>
+              <button v-if="$page.props.permissions && $page.props.permissions.includes('manage_admin')" @click="deleteItem(item.id)" class="btn-red">削除</button>
+              <button v-if="$page.props.permissions && $page.props.permissions.includes('manage_admin')" @click="editItem(item.id)" class="btn-red">修正</button>
+            </div>
+          </div>
+          <div>
+            <div class="mt-4"><strong>説明:</strong> {{ item.description }}</div>
+            <div class="mt-4">
+              <strong>状態:</strong>
+              {{ item.condition ? item.condition.condition : "" }}
+            </div>
+            <div class="mt-4">
+              <strong>カテゴリー:</strong>
+              {{ item.category ? item.category.category : "" }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 戻るボタン -->
+      <Link href="/item" class="block mt-4 bg-gray-300 py-2 px-4 rounded-md text-center">戻る</Link>
     </div>
-    <!-- 商品情報の表示 -->
-    <div class="md:w-2/3 space-y-4">
-      <div>
-        <div class="text-lg font-semibold">{{ item.name }}</div>
-        <div class="text-gray-500">{{ item.price }}</div>
-        <div class="text-gray-500">
-          <span>{{ commentsCount }} コメント</span>
-          <span class="mx-2">|</span>
-          <span>{{ likesCount }} いいね</span>
-        </div>
-      </div>
-      <div class="flex justify-between items-center md:items-start">
-        <div>
-          <button @click="purchaseItem(item.id)" class="btn-blue mr-2">
-            購入する
-          </button>
-          <button @click="commentItem(item.id)" class="btn-blue mr-2">
-            コメントする
-          </button>
-          <button @click="mailItem(item.id)" class="btn-blue mr-2">
-            メールを送る
-          </button>
-          <button @click="confirmLike" class="btn-red flex items-center">
-            <span class="mr-2">
-              <i :class="[isLiked ? 'fas' : 'far', 'fa-heart']"></i>
-            </span>
-            <span>
-              {{ isLiked ? "お気に入り解除" : "お気に入り登録" }}
-            </span>
-          </button>
-        </div>
-        <div>
-          <button v-if="$page.props.permissions && $page.props.permissions.includes('manage_admin')" @click="deleteItem(item.id)" class="btn-red">削除</button>
-          <button v-if="$page.props.permissions && $page.props.permissions.includes('manage_admin')" @click="editItem(item.id)" class="btn-red">修正</button>
-        </div>
-      </div>
-      <div>
-        <div class="mt-4"><strong>説明:</strong> {{ item.description }}</div>
-        <div class="mt-4">
-          <strong>状態:</strong>
-          {{ item.condition ? item.condition.condition : "" }}
-        </div>
-        <div class="mt-4">
-          <strong>カテゴリー:</strong>
-          {{ item.category ? item.category.category : "" }}
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- 戻るボタン -->
-  <Link href="/item" class="block mt-4 bg-gray-300 py-2 px-4 rounded-md text-center">戻る</Link>
-</div>
   </div>
 </template>

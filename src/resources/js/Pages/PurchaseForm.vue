@@ -1,7 +1,7 @@
 <template>
-  <div class="max-w-4xl mx-auto flex mt-8">
+  <div class="max-w-4xl mx-auto flex flex-col md:flex-row mt-8">
     <!-- 左側のフォーム -->
-    <div class="w-1/2 p-6 bg-white shadow-md rounded-md mr-4">
+    <div class="w-full md:w-1/2 p-6 bg-white shadow-md rounded-md mb-4 md:mr-4">
       <h2 class="text-xl font-semibold mb-4">商品購入</h2>
       <div class="mb-4">
         <strong>商品名:</strong> {{ item.name }}
@@ -21,13 +21,10 @@
       <!-- 配送先 -->
       <div class="mt-4">
         <label for="shipping" class="block text-sm font-medium text-gray-700">配送先:</label>
-        <select v-model="textShipping" id="payment" class="mt-1 p-2 border border-gray-300 rounded-md w-full" >
+        <select v-model="textShipping" id="shipping" class="mt-1 p-2 border border-gray-300 rounded-md w-full" >
           <option value="自宅">自宅</option>
           <option value="その他">その他</option>
         </select>
-        
-          
-        
       </div>
       <!-- 商品代金 -->
       <div class="mt-4">
@@ -44,18 +41,18 @@
     </div>
     
     <!-- 右側の選択アイテム表示 -->
-    <div class="w-1/2 p-6 bg-gray-100 shadow-md rounded-md">
+    <div class="w-full md:w-1/2 p-6 bg-gray-100 shadow-md rounded-md">
       <h2 class="text-xl font-semibold mb-4">選択した商品</h2>
-        <div>
-          <strong>支払方法:</strong> {{ textPayment }}
-        </div>
-        <div>
-          <strong>配送先:</strong> {{ textShipping }}
-        </div>
-        <div>
-          <strong>総額:</strong>  {{ parseFloat(item.price) + 500 }}円
-        </div>
+      <div>
+        <strong>支払方法:</strong> {{ textPayment }}
       </div>
+      <div>
+        <strong>配送先:</strong> {{ textShipping }}
+      </div>
+      <div>
+        <strong>総額:</strong>  {{ parseFloat(item.price) + 500 }}円
+      </div>
+    </div>
   </div>
 </template>
 

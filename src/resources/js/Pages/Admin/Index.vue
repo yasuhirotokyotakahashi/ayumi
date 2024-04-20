@@ -30,41 +30,41 @@ const deleteUser = (id) => {
 </script>
 
 <template>
-<div>
-  <div><Navigation /></div>
-  <button
-            @click="confirmComment()"
-            class="text-indigo-600 hover:text-indigo-900"
-          >
-            ユーザーとショップ交流確認画面へ
-          </button>
-  <button
-            @click="mailUser()"
-            class="text-indigo-600 hover:text-indigo-900"
-          >
-            メール送信画面へ
-          </button>
-  <table class="min-w-full divide-y divide-gray-200">
-    <thead class="bg-gray-50">
-      <tr>
-        <!-- ヘッダーの省略 -->
-      </tr>
-    </thead>
-    <tbody class="bg-white divide-y divide-gray-200">
-      <tr v-for="user in users" :key="user.id">
-        <td class="px-6 py-4 whitespace-nowrap">{{ user?.id || 'N/A' }}</td>
-  <td class="px-6 py-4 whitespace-nowrap">{{ user?.name || 'N/A' }}</td>
-  <td class="px-6 py-4 whitespace-nowrap">{{ user?.email || 'N/A' }}</td>
-        <td class="px-6 py-4 whitespace-nowrap">
-          <button
-            @click="deleteUser(user.id)"
-            class="text-indigo-600 hover:text-indigo-900"
-          >
-            Delete
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div>
+    <!-- ナビゲーションバー -->
+    <div><Navigation /></div>
+
+    <!-- ユーザーとショップ交流確認画面へのボタン -->
+    <button @click="confirmComment()" class="text-indigo-600 hover:text-indigo-900">
+      ユーザーとショップ交流確認画面へ
+    </button>
+
+    <!-- メール送信画面へのボタン -->
+    <button @click="mailUser()" class="text-indigo-600 hover:text-indigo-900">
+      メール送信画面へ
+    </button>
+
+    <!-- ユーザーテーブル -->
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-gray-50">
+        <tr>
+          <!-- ヘッダーの省略 -->
+        </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-200">
+        <!-- ユーザー情報の表示 -->
+        <tr v-for="user in users" :key="user.id">
+          <td class="px-6 py-4 whitespace-nowrap">{{ user?.id || 'N/A' }}</td>
+          <td class="px-6 py-4 whitespace-nowrap">{{ user?.name || 'N/A' }}</td>
+          <td class="px-6 py-4 whitespace-nowrap">{{ user?.email || 'N/A' }}</td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <!-- ユーザー削除ボタン -->
+            <button @click="deleteUser(user.id)" class="text-indigo-600 hover:text-indigo-900">
+              削除
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ItemsRequest;
 use App\Models\Category;
 use App\Models\Condition;
 use App\Models\Item;
@@ -16,22 +17,23 @@ class ItemController extends Controller
     {
         $items = Item::all();
         $user = auth()->user();
-        $permissions = [];
+        $likeItems = [];
 
+        // ログインしている場合のみ処理を実行
         if ($user) {
             // ログインユーザーの権限を取得
             $permissions = $user->getAllPermissions()->pluck('name')->toArray();
+            $likeItems = $user->likes;
         } else {
-            // ログインしていない場合はnullを設定するか、必要に応じてデフォルトの名前を設定します
-            $userName = null;
+            // ログインしていない場合は権限を空にする
+            $permissions = [];
         }
 
         $unsoldItems = $items->reject(function ($item) {
             return $item->soldItems()->exists();
         });
 
-
-        return Inertia::render('TopPage', ['items' => $unsoldItems, 'permissions' => $permissions, 'user' => $user,]);
+        return Inertia::render('TopPage', ['items' => $unsoldItems, 'permissions' => $permissions, 'user' => $user, 'likeItems' => $likeItems]);
     }
 
     public function detail($id)
@@ -82,7 +84,7 @@ class ItemController extends Controller
         ]);
     }
 
-    public function sellCreate(Request $request)
+    public function sellCreate(ItemsRequest $request)
     {
 
         // フォームデータのバリデーションを行う

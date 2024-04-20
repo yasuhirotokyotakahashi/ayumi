@@ -24,16 +24,14 @@ const submitComment = (id) => {
 
 <template>
   <div>
+    <div><Navigation /></div>
     <div>{{ item.id }}</div>
     <form @submit.prevent="submitComment(item.id)" class="mt-4">
-    <div class="mb-4">
-      <label for="comment" class="block text-sm font-medium text-gray-700">コメント:</label>
-      <textarea id="comment" v-model="form.comment" name="comment" rows="3" class="input-text mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" required></textarea>
-    </div>
-    <PrimaryButton type="button"
-                        >コメントを投稿</PrimaryButton
-                    >
-  </form>
+      <div class="mb-4">
+        <label for="comment" class="block text-sm font-medium text-gray-700">コメント:</label>
+        <textarea id="comment" v-model="form.comment" name="comment" rows="3" class="input-text mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" required></textarea>
+      </div>
+      <PrimaryButton type="submit">コメントを投稿</PrimaryButton>
+    </form>
   </div>
-    
 </template>
