@@ -12,8 +12,13 @@ const form = useForm({
    postcode: '', // プロフィールが存在しない場合は空文字列をセット
    address: '',
    building:  '',
-   img: '',
 });
+
+const confirmUpdate = () => {
+  if (confirm("配送先を確定しますか？")) {
+    updateProfile();
+  }
+};
 
 const updateProfile = () => {
   console.log(form);
@@ -26,9 +31,8 @@ const updateProfile = () => {
   <div>
     <div><Navigation /></div>
     <div class="max-w-md mx-auto p-6 bg-white shadow-md rounded-md mt-8">
-      <form @submit.prevent="updateProfile" class="space-y-4">
+      <form @submit.prevent="confirmUpdate" class="space-y-4">
         <div>
-          <div class="mb-4"><strong>ID:</strong> {{ props.profile.id }}</div>
           <div class="mb-4">
             <label for="postcode" class="block text-sm font-bold">郵便番号:</label>
             <input id="postcode" v-model="form.postcode" type="text" class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:border-blue-500" />
@@ -42,13 +46,9 @@ const updateProfile = () => {
             <textarea id="building" v-model="form.building" class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:border-blue-500"></textarea>
           </div>
         </div>
-        <div class="mb-4">
-          <label class="block text-sm font-bold">商品画像</label>
-          <input type="file" name="img" id="img" @input="form.img = $event.target.files[0]" class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:border-blue-500" />
-        </div>
         <div>
-          <button type="submit" class="w-full bg-green-500 py-2 px-4 rounded-md text-white font-bold text-center focus:outline-none focus:bg-green-600 hover:bg-green-600 transition duration-300 ease-in-out">プロフィール確定</button>
-          <Link href="/item" class="block mt-4 bg-gray-300 py-2 px-4 rounded-md text-center font-bold text-gray-800 hover:bg-gray-400 transition duration-300 ease-in-out">戻る</Link>
+          <button type="submit" class="w-full bg-green-500 py-2 px-4 rounded-md text-white font-bold text-center focus:outline-none focus:bg-green-600 hover:bg-green-600 transition duration-300 ease-in-out">配送先を確定する</button>
+          <Link href="/" class="block mt-4 bg-gray-300 py-2 px-4 rounded-md text-center font-bold text-gray-800 hover:bg-gray-400 transition duration-300 ease-in-out">戻る</Link>
         </div>
       </form>
     </div>

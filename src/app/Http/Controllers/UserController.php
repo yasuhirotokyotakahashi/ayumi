@@ -96,7 +96,7 @@ class UserController extends Controller
 
             // ここに他の Item モデルに対する処理を追加することができます
 
-            return redirect()->route('items.index');
+            return redirect()->route('user.mypage');
         }
     }
 }

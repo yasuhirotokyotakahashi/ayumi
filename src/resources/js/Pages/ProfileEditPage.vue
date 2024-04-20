@@ -14,6 +14,12 @@ const form = useForm({
   img: props.profile.img_url,
 });
 
+const confirmUpdate = () => {
+  if (confirm("本当にプロフィールを更新しますか？")) {
+    updateProfile();
+  }
+};
+
 const updateProfile = () => {
   console.log(form);
   form.post(route("user.updateProfile"));
@@ -40,7 +46,7 @@ const updateProfile = () => {
 
     <!-- プロフィールを編集するフォーム -->
     <div class="bg-white shadow-md rounded-md p-6">
-      <form @submit.prevent="updateProfile" class="mt-4">
+      <form @submit.prevent="confirmUpdate" class="mt-4">
         <div class="mb-4">
           <label for="nickname" class="block text-sm font-bold text-gray-700">ニックネーム:</label>
           <input id="nickname" v-model="form.nickname" type="text" class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:border-blue-500" />
@@ -63,7 +69,7 @@ const updateProfile = () => {
         </div>
         <button type="submit" class="w-full bg-green-500 py-2 px-4 rounded-md text-white font-bold text-center focus:outline-none focus:bg-green-600 hover:bg-green-600 transition duration-300 ease-in-out">プロフィールを更新</button>
       </form>
-      <Link href="/item" class="block mt-4 bg-gray-300 py-2 px-4 rounded-md text-center font-bold text-gray-800 hover:bg-gray-400 transition duration-300 ease-in-out">戻る</Link>
+      <Link href="/" class="block mt-4 bg-gray-300 py-2 px-4 rounded-md text-center font-bold text-gray-800 hover:bg-gray-400 transition duration-300 ease-in-out">戻る</Link>
     </div>
   </div>
 </template>

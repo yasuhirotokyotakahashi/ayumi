@@ -129,7 +129,7 @@ const mailItem = (itemId) => {
         </div>
       </div>
       <!-- 戻るボタン -->
-      <Link href="/item" class="block mt-4 bg-gray-300 py-2 px-4 rounded-md text-center">戻る</Link>
+      <Link href="/" class="block mt-4 bg-gray-300 py-2 px-4 rounded-md text-center">戻る</Link>
     </div>
   </div>
 </template>
