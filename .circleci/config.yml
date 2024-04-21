@@ -10,8 +10,8 @@ jobs:
       - run: |
           curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
           sudo apt-get install -y nodejs
-      - run: npm install
-      - run: npm run dev
+      - run: cd src && npm install
+      - run: cd src && npm run dev
       - run:
           name: php test
           command: php artisan test tests/Feature/ItemControllerTest.php
