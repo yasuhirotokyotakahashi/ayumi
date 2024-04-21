@@ -14,7 +14,13 @@ jobs:
       - run: |
           cd src
           LARAVEL_BYPASS_ENV_CHECK=1 npm run build
+          bash -c '
+          # Generate application key
+          php artisan key:generate --env=testing --show | awk "/^base64:/ { print \"APP_KEY=\" \$0 }" >> .env
+          
+          # Run tests
           php artisan test tests/Feature/ItemControllerTest.php
+          '
     environment:
       APP_ENV: testing
       BCRYPT_ROUNDS: 4
