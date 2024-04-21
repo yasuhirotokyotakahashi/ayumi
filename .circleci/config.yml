@@ -14,7 +14,4 @@ jobs:
       - run: |
           cd src
           LARAVEL_BYPASS_ENV_CHECK=1 npm run build
-      - run: |
-          cd src
-          name: php test
-          command: php artisan test tests/Feature/ItemControllerTest.php
+          php artisan test tests/Feature/ItemControllerTest.php
