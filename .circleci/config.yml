@@ -7,6 +7,9 @@ jobs:
       - checkout
       - run: sudo composer self-update --2
       - run: cd src && composer update -n --prefer-dist
+      - run: |
+          curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+          sudo apt-get install -y nodejs
       - run: npm install
       - run: npm run dev
       - run:
