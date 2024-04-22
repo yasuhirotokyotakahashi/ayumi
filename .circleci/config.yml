@@ -7,12 +7,12 @@ jobs:
       - checkout
       - run: sudo composer self-update --2
       - restore_cache:
-          key: composer-v1-{{ checksum "composer.lock" }}
+          key: composer-v1-{{ checksum "src/composer.lock" }}
       - run: cd src && composer update -n --prefer-dist
       - save_cache:
-          key: composer-v1-{{ checksum "composer.lock" }}
+          key: composer-v1-{{ checksum "src/composer.lock" }}
           paths:
-            - vendor
+            - src/vendor
       - run: |
           curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
           sudo apt-get install -y nodejs
