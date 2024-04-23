@@ -147,7 +147,7 @@ coachtechフリマは、coachtechブランドのアイテムを出品する、�
 
 
 ## ER図
-[![testdayo](https://github.com/yasuhirotokyotakahashi/ayumi/assets/128282431/347aa656-6efe-4451-8045-1e68ab30fd80)]
+![testdayo](https://github.com/yasuhirotokyotakahashi/ayumi/assets/128282431/347aa656-6efe-4451-8045-1e68ab30fd80)
 
 ## 環境構築
 プロジェクトをローカルで実行するための手順を以下に示します。docker及びdocker-composeは導入済みとします。
@@ -156,14 +156,19 @@ coachtechフリマは、coachtechブランドのアイテムを出品する、�
 ```bash
 mkdir my-project
 cd my-project
+```
+my-projectの箇所はお好きなディレクトリ名で作成してください。
+```bash
 git clone　https://github.com/yasuhirotokyotakahashi/ayumi.git
 sudo chmod -R 777 *
 cd ayumi
-
+```
+ここからdockerのビルドから最後まで一気に行います。
+```bash
 docker compose build
 docker compose up -d
-
 docker compose exec php bash
+
 composer install
 npm install --save-dev vite laravel-vite-plugin @vitejs/plugin-vue
 
@@ -175,4 +180,4 @@ npm run build
 
 ```
 
-##　localhostでアクセスできると思います。
+##　無事localhostでアクセスできると思います。
