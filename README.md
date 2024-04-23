@@ -151,8 +151,34 @@ coachtechフリマは、coachtechブランドのアイテムを出品する、�
 
 ## ER図
 [ER図のイメージをここに挿入]
-![rmsER図](https://github.com/yasuhirotokyotakahashi/rms/assets/128282431/d6dac7d8-e118-4766-9d73-fd2e001a2368)
 
 ## 環境構築
 プロジェクトをローカルで実行するための手順を以下に示します。docker及びdocker-composeは導入済みとします。
 
+```bash
+mkdir my-project
+cd my-project
+git clone <リポジトリのURL>
+cd ayumi
+
+docker-compose build
+docker-compose up -d
+
+docker-compose exec php bash
+cp .env.example .env
+
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=laravel_db
+DB_USERNAME=laravel_user
+DB_PASSWORD=laravel_pass
+
+composer install
+npm install --save-dev vite laravel-vite-plugin @vitejs/plugin-vue
+
+php artisan key:generate
+php artisan migrate
+php artisan db:seed
+
+npm run build
