@@ -181,3 +181,4 @@ npm run build
 ```
 
 ##　無事localhostでアクセスできると思います。
+必要に応じて、管理者、店舗代表者、認証ユーザーという役割を作成したのでphp artisan db:seed PermissionsSeederやphp artisan storage:linkなどもご使用ください。

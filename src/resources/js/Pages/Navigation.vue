@@ -3,17 +3,8 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16">
         <div class="flex-shrink-0">
-          <img
-            class="block lg:hidden h-8 w-auto"
-            src="/img/logos/workflow-mark-indigo-500.svg"
-            alt="Workflow"
-          />
-          <img
-            class="hidden lg:block h-8 w-auto"
-            src="/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
-            alt="Workflow"
-          />
-        </div>
+  <h1 class="text-2xl font-bold text-white">COACHTECH Flea Market</h1>
+</div>
         <div class="hidden sm:flex sm:ml-6 space-x-8">
           <template v-if="$page.props.auth.user">
             <NavLink
@@ -30,7 +21,7 @@
                 $page.props.permissions &&
                 $page.props.permissions.includes('manage_shop_owner')
               "
-              :href="route('admin.user')"
+              :href="route('shop.index')"
               class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
               >店舗代表者画面へ</NavLink
             >
