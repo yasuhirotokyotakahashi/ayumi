@@ -27,6 +27,8 @@ class DatabaseSeeder extends Seeder
             CommentsSeeder::class,
             LikesSeeder::class,
             SoldItemsSeeder::class,
+            CategoryItemsSeeder::class,
+            PermissionsSeeder::class,
         ]);
     }
 }

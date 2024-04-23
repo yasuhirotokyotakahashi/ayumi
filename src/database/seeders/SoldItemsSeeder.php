@@ -14,6 +14,6 @@ class SoldItemsSeeder extends Seeder
     public function run(): void
     {
         //
-        SoldItem::factory()->count(100)->create();
+        SoldItem::factory()->count(20)->create();
     }
 }
