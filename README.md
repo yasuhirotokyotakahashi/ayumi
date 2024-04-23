@@ -155,7 +155,6 @@ coachtechフリマは、coachtechブランドのアイテムを出品する、�
 ## 環境構築
 プロジェクトをローカルで実行するための手順を以下に示します。docker及びdocker-composeは導入済みとします。
 
-<font color="white">
 
 ```bash
 mkdir my-project
@@ -184,5 +183,3 @@ php artisan migrate
 php artisan db:seed
 
 npm run build
-
-</font>
