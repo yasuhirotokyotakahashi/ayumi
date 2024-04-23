@@ -7,7 +7,7 @@ coachtechフリマは、coachtechブランドのアイテムを出品する、�
 - http://52.69.179.9/
 
 ## 他のリポジトリ
-- [本プロジェクトのリポジトリ](リンク)
+- [本プロジェクトのリポジトリ](https://github.com/yasuhirotokyotakahashi/ayumi)
 
 ## 機能一覧
 - 新規ユーザー登録
@@ -146,9 +146,6 @@ coachtechフリマは、coachtechブランドのアイテムを出品する、�
 
 
 
-
-
-
 ## ER図
 [ER図のイメージをここに挿入]
 
@@ -159,7 +156,7 @@ coachtechフリマは、coachtechブランドのアイテムを出品する、�
 ```bash
 mkdir my-project
 cd my-project
-git clone <リポジトリのURL>
+git clone　https://github.com/yasuhirotokyotakahashi/ayumi.git
 sudo chmod -R 777 *
 cd ayumi
 
