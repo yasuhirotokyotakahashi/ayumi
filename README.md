@@ -175,3 +175,7 @@ php artisan migrate
 php artisan db:seed
 
 npm run build
+
+```bash
+
+##　localhostでアクセスできると思います。
