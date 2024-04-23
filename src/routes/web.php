@@ -43,7 +43,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     // 上記はデフォルト
 
-
     Route::post('/item/like/{item:id}', [LikeController::class, 'create'])->name('like.create');
     Route::post('/item/unlike/{item:id}', [LikeController::class, 'destroy'])->name('like.destroy');
     Route::get('/purchase/{item:id}', [PurchaseController::class, 'index'])->name('purchase.index');
