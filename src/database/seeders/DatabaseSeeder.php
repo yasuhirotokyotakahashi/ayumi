@@ -28,7 +28,6 @@ class DatabaseSeeder extends Seeder
             LikesSeeder::class,
             SoldItemsSeeder::class,
             CategoryItemsSeeder::class,
-            PermissionsSeeder::class,
         ]);
     }
 }

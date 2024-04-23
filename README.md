@@ -160,21 +160,13 @@ coachtechフリマは、coachtechブランドのアイテムを出品する、�
 mkdir my-project
 cd my-project
 git clone <リポジトリのURL>
+sudo chmod -R 777 *
 cd ayumi
 
-docker-compose build
-docker-compose up -d
+docker compose build
+docker compose up -d
 
-docker-compose exec php bash
-cp .env.example .env
-
-DB_CONNECTION=mysql
-DB_HOST=mysql
-DB_PORT=3306
-DB_DATABASE=laravel_db
-DB_USERNAME=laravel_user
-DB_PASSWORD=laravel_pass
-
+docker compose exec php bash
 composer install
 npm install --save-dev vite laravel-vite-plugin @vitejs/plugin-vue
 
