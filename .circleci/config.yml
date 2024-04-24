@@ -38,7 +38,7 @@ jobs:
       SESSION_DRIVER: array
   deploy:
     docker:
-      - image: cimg/php:8.1
+      - image: cimg/php:8.3.6
         environment:
           NODE_VERSION: "16"
     steps:
@@ -48,8 +48,6 @@ jobs:
           command: |
             sudo curl -fsSL https://deb.nodesource.com/setup_${NODE_VERSION}.x | sudo -E bash -
             sudo apt-get install -y nodejs
-            sudo curl -sS https://getcomposer.org/installer | php -- --install-dir=/home/circleci/bin --filename=composer
-            echo 'export PATH="/home/circleci/bin:$PATH"' >> $BASH_ENV && source $BASH_ENV
       - run:
           name: deploy
           command: |
