@@ -39,19 +39,22 @@ jobs:
   deploy:
     docker:
       - image: cimg/php:8.1
+        environment:
+          NODE_VERSION: "16"
     steps:
       - add_ssh_keys
       - run:
-          name: set PHP path
+          name: Install Node.js and npm
           command: |
-            ssh -o StrictHostKeyChecking=no -t webapp@${HOST_NAME} "export PATH=/usr/bin:$PATH && which php" 
+            sudo curl -fsSL https://deb.nodesource.com/setup_${NODE_VERSION}.x | sudo -E bash -
+            sudo apt-get install -y nodejs
       - run:
           name: deploy
           command: |
             ssh -o StrictHostKeyChecking=no -t webapp@${HOST_NAME} "cd /var/www/ayumi && \
               git pull origin main && \
               cd src && composer install -n --no-dev --prefer-dist && \
-              npm install && \
+              cd src && npm install && \
               npm run build && \
               php artisan migrate --force && \
               php artisan config:cache"
