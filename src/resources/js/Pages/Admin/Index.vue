@@ -30,41 +30,56 @@ const deleteUser = (id) => {
 </script>
 
 <template>
-  <div>
+  <div class="container mx-auto px-4">
     <!-- ナビゲーションバー -->
-    <div><Navigation /></div>
+    <div class="mb-4"><Navigation /></div>
 
-    <!-- ユーザーとショップ交流確認画面へのボタン -->
-    <button @click="confirmComment()" class="text-indigo-600 hover:text-indigo-900">
-      ユーザーとショップ交流確認画面へ
-    </button>
+    <!-- ボタン群 -->
+    <div class="flex flex-col items-center mb-4">
+      <!-- ユーザーとショップ交流確認画面へのボタン -->
+      <button @click="confirmComment()" class="mb-2 md:mb-0 md:mr-4 w-full md:w-auto text-center text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg shadow-md">
+        ユーザーとショップ交流確認画面へ
+      </button>
 
-    <!-- メール送信画面へのボタン -->
-    <button @click="mailUser()" class="text-indigo-600 hover:text-indigo-900">
-      メール送信画面へ
-    </button>
+      <!-- メール送信画面へのボタン -->
+      <button @click="mailUser()" class="w-full md:w-auto text-center text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg shadow-md">
+        メール送信画面へ
+      </button>
+    </div>
 
     <!-- ユーザーテーブル -->
-    <table class="min-w-full divide-y divide-gray-200">
-      <thead class="bg-gray-50">
-        <tr>
-          <!-- ヘッダーの省略 -->
-        </tr>
-      </thead>
-      <tbody class="bg-white divide-y divide-gray-200">
-        <!-- ユーザー情報の表示 -->
-        <tr v-for="user in users" :key="user.id">
-          <td class="px-6 py-4 whitespace-nowrap">{{ user?.id || 'N/A' }}</td>
-          <td class="px-6 py-4 whitespace-nowrap">{{ user?.name || 'N/A' }}</td>
-          <td class="px-6 py-4 whitespace-nowrap">{{ user?.email || 'N/A' }}</td>
-          <td class="px-6 py-4 whitespace-nowrap">
-            <!-- ユーザー削除ボタン -->
-            <button @click="deleteUser(user.id)" class="text-indigo-600 hover:text-indigo-900">
-              削除
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="overflow-x-auto">
+      <table class="w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50">
+          <tr>
+            <!-- ヘッダーの省略 -->
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+          <!-- ユーザー情報の表示 -->
+          <tr v-for="user in users" :key="user.id">
+            <td class="px-4 md:px-6 py-2 md:py-4 whitespace-nowrap">{{ user?.id || 'N/A' }}</td>
+            <td class="px-4 md:px-6 py-2 md:py-4 whitespace-nowrap">{{ user?.name || 'N/A' }}</td>
+            <td class="px-4 md:px-6 py-2 md:py-4 whitespace-nowrap">{{ user?.email || 'N/A' }}</td>
+            <td class="px-4 md:px-6 py-2 md:py-4 whitespace-nowrap">
+              <!-- ユーザー削除ボタン -->
+              <button @click="deleteUser(user.id)" class="text-indigo-600 hover:text-indigo-900">
+                削除
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
+
+<style scoped>
+@media (max-width: 768px) {
+  /* 768px以下の場合のスタイル */
+  .container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+}
+</style>

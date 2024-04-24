@@ -13,22 +13,10 @@ const props = defineProps({
 });
 
 const form = useForm({
-  comment: "",
+  id: "",
 });
 
 const isLiked = ref(props.likedItemIds.includes(props.item.id));
-
-const deleteItem = (id) => {
-  console.log(id);
-  form.delete(route("items.delete", id));
-  // 削除後のリダイレクトなど、必要な処理を追加することができます
-};
-
-const editItem = (id) => {
-  console.log(id);
-  form.get(route("items.edit", id));
-  // 削除後のリダイレクトなど、必要な処理を追加することができます
-};
 
 const confirmLike = () => {
   if (isLiked.value) {
@@ -63,20 +51,17 @@ const commentItem = (itemId) => {
   window.location.href =route("comment.index", itemId );
 };
 
-const mailItem = (itemId) => {
-  window.location.href =route("mail.index", itemId );
-};
 
 </script>
 
 <template>
   <div>
     <div><Navigation /></div>
-    <div class="max-w-md mx-auto p-6 bg-white shadow-md rounded-md mt-8">
+    <div class="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-md mt-8">
       <!-- 画像と商品情報の表示 -->
-      <div class="flex flex-col md:flex-row items-center md:items-start justify-between space-y-4 md:space-y-0 md:space-x-8">
+      <div class="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0 md:space-x-8">
         <!-- 商品画像の表示 -->
-        <div class="md:w-1/3">
+        <div class="md:w-1/3 w-full">
           <img :src="item.img_url" alt="Item Image" class="w-full h-auto" />
         </div>
         <!-- 商品情報の表示 -->
@@ -98,9 +83,6 @@ const mailItem = (itemId) => {
               <button @click="commentItem(item.id)" class="btn-blue mr-2">
                 コメントする
               </button>
-              <button @click="mailItem(item.id)" class="btn-blue mr-2">
-                メールを送る
-              </button>
               <button @click="confirmLike" class="btn-red flex items-center">
                 <span class="mr-2">
                   <i :class="[isLiked ? 'fas' : 'far', 'fa-heart']"></i>
@@ -109,10 +91,6 @@ const mailItem = (itemId) => {
                   {{ isLiked ? "お気に入り解除" : "お気に入り登録" }}
                 </span>
               </button>
-            </div>
-            <div>
-              <button v-if="$page.props.permissions && $page.props.permissions.includes('manage_admin')" @click="deleteItem(item.id)" class="btn-red">削除</button>
-              <button v-if="$page.props.permissions && $page.props.permissions.includes('manage_admin')" @click="editItem(item.id)" class="btn-red">修正</button>
             </div>
           </div>
           <div>
@@ -133,3 +111,12 @@ const mailItem = (itemId) => {
     </div>
   </div>
 </template>
+
+<style scoped>
+@media (max-width: 768px) {
+  /* スマートフォン用のスタイル */
+  .md\:w-1\/3, .w-full {
+    width: 100%;
+  }
+}
+</style>

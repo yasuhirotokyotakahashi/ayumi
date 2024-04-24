@@ -9,9 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\StoreRepresentativeController;
 use App\Http\Controllers\UserController;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +34,9 @@ use Inertia\Inertia;
 // Route::get('/dashboard', function () {
 //     return Inertia::render('Dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/', [ItemController::class, 'index'])->name('items.index');
+Route::get('/item/{item:id}', [ItemController::class, 'detail'])->name('item.detail');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -71,14 +72,12 @@ Route::middleware('auth')->group(function () {
     // 認証ユーザーのルート
     Route::get('/comment/{item:id}', [CommentController::class, 'index'])->name('comment.index')->middleware(['role:user']);
     Route::post('/comment/{item:id}', [CommentController::class, 'create'])->name('comment.create')->middleware(['role:user']);
+    Route::delete('/comment/{commentId}', [CommentController::class, 'delete'])->name('comment.delete')->middleware(['role:user']);
     Route::get('/sell', [ItemController::class, 'sellView'])->name('item.sellView')->middleware(['role:user']);
     Route::post('/sell/create', [ItemController::class, 'sellCreate'])->name('item.sellCreate')->middleware(['role:user']);
 });
 
-// 追加
 
-Route::get('/', [ItemController::class, 'index'])->name('items.index');
-Route::get('/item/{item:id}', [ItemController::class, 'detail'])->name('item.detail');
 
 
 

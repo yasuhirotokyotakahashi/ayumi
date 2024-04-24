@@ -1,21 +1,20 @@
 <template>
-<div>
-  <div><Navigation /></div>
-
+  <div>
+    <div><Navigation /></div>
     <!-- ユーザーに役割を割り当てるフォーム -->
     <div class="max-w-xl mx-auto mt-8">
       <form @submit.prevent="submit" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <div class="mb-4">
           <label for="user" class="block text-gray-700 text-sm font-bold mb-2">ユーザー:</label>
           <select v-model="form.user_id" id="user" name="user_id" class="w-full p-2 border rounded">
-            <option v-for="user in users" :key="user.id" :value="user.id">{{ user.name }}</option>
+            <option v-for="user in users" :key="user.id" :value="user.id">{{ user.name }}様</option>
           </select>
         </div>
 
         <div class="mb-4">
           <label for="role" class="block text-gray-700 text-sm font-bold mb-2">役割:</label>
           <select v-model="form.role_id" id="role" name="role_id" class="w-full p-2 border rounded">
-            <option value="3">User</option>
+            <option value="3">認証ユーザー権限</option>
           </select>
         </div>
 
@@ -35,6 +34,16 @@
     </div>
   </div>
 </template>
+
+<style scoped>
+@media (max-width: 768px) {
+  /* スマートフォン用のスタイル */
+  .max-w-xl {
+    max-width: 90%;
+    margin: 0 auto;
+  }
+}
+</style>
 
 <script setup>
 import { useForm } from "@inertiajs/vue3";

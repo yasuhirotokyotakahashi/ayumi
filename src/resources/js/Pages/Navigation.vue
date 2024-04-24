@@ -3,33 +3,26 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16">
         <div class="flex-shrink-0">
-  <h1 class="text-2xl font-bold text-white">COACHTECH Flea Market</h1>
-</div>
+          <h1 class="text-2xl font-bold text-white">COACHTECH Flea Market</h1>
+        </div>
+        
+        <!-- メニュー項目 -->
         <div class="hidden sm:flex sm:ml-6 space-x-8">
           <template v-if="$page.props.auth.user">
             <NavLink
-              v-if="
-                $page.props.permissions &&
-                $page.props.permissions.includes('manage_admin')
-              "
+              v-if="$page.props.permissions && $page.props.permissions.includes('manage_admin')"
               :href="route('admin.user')"
               class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
               >管理者画面へ</NavLink
             >
             <NavLink
-              v-if="
-                $page.props.permissions &&
-                $page.props.permissions.includes('manage_shop_owner')
-              "
+              v-if="$page.props.permissions && $page.props.permissions.includes('manage_shop_owner')"
               :href="route('shop.index')"
               class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
               >店舗代表者画面へ</NavLink
             >
             <NavLink
-            v-if="
-                $page.props.permissions &&
-                $page.props.permissions.includes('manage_user')
-              "
+              v-if="$page.props.permissions && $page.props.permissions.includes('manage_user')"
               :href="route('item.sellView')"
               class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
               >出品</NavLink
@@ -44,11 +37,59 @@
               class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
               >一覧へ</NavLink
             >
-            
+            <NavLink class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" @click.prevent="confirmLogout">ログアウトへ</NavLink>
+          </template>
+          <template v-else>
             <NavLink
-    class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-    @click.prevent="confirmLogout"
->ログアウトへ</NavLink>
+              :href="route('items.index')"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >アイテム一覧へ</NavLink
+            >
+            <NavLink
+              :href="route('login')"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >ログインへ</NavLink
+            >
+            <NavLink
+              :href="route('register')"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >会員登録へ</NavLink
+            >
+          </template>
+        </div>
+
+        <!-- モバイル用のメニュー項目 -->
+        <div class="flex sm:hidden flex-col space-y-2 mt-2">
+          <template v-if="$page.props.auth.user">
+            <NavLink
+              v-if="$page.props.permissions && $page.props.permissions.includes('manage_admin')"
+              :href="route('admin.user')"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >管理者画面へ</NavLink
+            >
+            <NavLink
+              v-if="$page.props.permissions && $page.props.permissions.includes('manage_shop_owner')"
+              :href="route('shop.index')"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >店舗代表者画面へ</NavLink
+            >
+            <NavLink
+              v-if="$page.props.permissions && $page.props.permissions.includes('manage_user')"
+              :href="route('item.sellView')"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >出品</NavLink
+            >
+            <NavLink
+              :href="route('user.mypage')"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >マイページへ</NavLink
+            >
+            <NavLink
+              :href="route('items.index')"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >一覧へ</NavLink
+            >
+            <NavLink class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" @click.prevent="confirmLogout">ログアウトへ</NavLink>
           </template>
           <template v-else>
             <NavLink
@@ -73,12 +114,15 @@
   </nav>
 </template>
 
+
 <script setup>
 import { Link as NavLink } from "@inertiajs/vue3";
 import { usePage } from '@inertiajs/inertia-vue3';
 import { useForm } from '@inertiajs/inertia-vue3';
 
 const { $inertia } = usePage();
+
+
 const form = useForm();
 
 const confirmLogout = () => {
@@ -88,3 +132,12 @@ const confirmLogout = () => {
 };
 
 </script>
+
+<!-- スマートフォン用メニューのスタイル -->
+<style scoped>
+@media (max-width: 768px) {
+  .sm\\:hidden {
+    display: none;
+  }
+}
+</style>

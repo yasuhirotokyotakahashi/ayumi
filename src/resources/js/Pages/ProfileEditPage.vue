@@ -46,30 +46,42 @@ const updateProfile = () => {
 
     <!-- プロフィールを編集するフォーム -->
     <div class="bg-white shadow-md rounded-md p-6">
-      <form @submit.prevent="confirmUpdate" class="mt-4">
-        <div class="mb-4">
-          <label for="nickname" class="block text-sm font-bold text-gray-700">ニックネーム:</label>
-          <input id="nickname" v-model="form.nickname" type="text" class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:border-blue-500" />
-        </div>
-        <div class="mb-4">
-          <label for="postcode" class="block text-sm font-bold text-gray-700">郵便番号:</label>
-          <input id="postcode" v-model="form.postcode" type="text" class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:border-blue-500" />
-        </div>
-        <div class="mb-4">
-          <label for="address" class="block text-sm font-bold text-gray-700">住所:</label>
-          <input id="address" v-model="form.address" type="text" class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:border-blue-500" />
-        </div>
-        <div class="mb-4">
-          <label for="building" class="block text-sm font-bold text-gray-700">建物名:</label>
-          <textarea id="building" v-model="form.building" class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:border-blue-500"></textarea>
-        </div>
-        <div class="mb-4">
-          <label for="img" class="block text-sm font-bold text-gray-700">プロフィール画像:</label>
-          <input type="file" name="img" id="img" @input="form.img = $event.target.files[0]" class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:border-blue-500" />
-        </div>
-        <button type="submit" class="w-full bg-green-500 py-2 px-4 rounded-md text-white font-bold text-center focus:outline-none focus:bg-green-600 hover:bg-green-600 transition duration-300 ease-in-out">プロフィールを更新</button>
-      </form>
+      <!-- 修正: スクロール可能なコンテナを追加 -->
+      <div class="max-h-96 overflow-y-auto">
+        <form @submit.prevent="confirmUpdate" class="mt-4">
+          <div class="mb-4">
+            <label for="nickname" class="block text-sm font-bold text-gray-700">ニックネーム:</label>
+            <input id="nickname" v-model="form.nickname" type="text" class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:border-blue-500" />
+          </div>
+          <div class="mb-4">
+            <label for="postcode" class="block text-sm font-bold text-gray-700">郵便番号:</label>
+            <input id="postcode" v-model="form.postcode" type="text" class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:border-blue-500" />
+          </div>
+          <div class="mb-4">
+            <label for="address" class="block text-sm font-bold text-gray-700">住所:</label>
+            <input id="address" v-model="form.address" type="text" class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:border-blue-500" />
+          </div>
+          <div class="mb-4">
+            <label for="building" class="block text-sm font-bold text-gray-700">建物名:</label>
+            <textarea id="building" v-model="form.building" class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:border-blue-500"></textarea>
+          </div>
+          <div class="mb-4">
+            <label for="img" class="block text-sm font-bold text-gray-700">プロフィール画像:</label>
+            <input type="file" name="img" id="img" @input="form.img = $event.target.files[0]" class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:border-blue-500" />
+          </div>
+          <button type="submit" class="w-full bg-green-500 py-2 px-4 rounded-md text-white font-bold text-center focus:outline-none focus:bg-green-600 hover:bg-green-600 transition duration-300 ease-in-out">プロフィールを更新</button>
+        </form>
+      </div>
       <Link href="/" class="block mt-4 bg-gray-300 py-2 px-4 rounded-md text-center font-bold text-gray-800 hover:bg-gray-400 transition duration-300 ease-in-out">戻る</Link>
     </div>
   </div>
 </template>
+
+<style scoped>
+@media (max-width: 768px) {
+  /* スマートフォン用のスタイル */
+  .w-full {
+    width: 100%;
+  }
+}
+</style>

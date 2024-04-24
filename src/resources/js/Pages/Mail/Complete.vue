@@ -3,15 +3,18 @@ import { Link } from "@inertiajs/vue3";
 </script>
 
 <template>
-  <div>
-    <!-- お問い合わせページへのリンク -->
-    <h2 class="text-lg border-b border-blue-700 p-1">
-      <Link :href="route('mail.index')" class="text-blue-700 underline">
-        お問い合わせ
-      </Link>
-    </h2>
-
-    <!-- お問い合わせ送信完了メッセージ -->
-    <h3 class="border-l-4 border-blue-700 p-1">お問い合わせが送信されました</h3>
+  <div class="flex flex-col items-center">
+    <!-- メッセージ -->
+    <h3 class="p-1">お問い合わせが送信されました</h3>
+    <!-- リンク -->
+    <Link href="/" class="block bg-gray-300 py-2 px-4 rounded-md text-center mt-4">ホームに戻る</Link>
   </div>
 </template>
+
+<style scoped>
+@media (max-width: 768px) {
+  .flex.justify-center {
+    justify-content: center;
+  }
+}
+</style>

@@ -30,17 +30,10 @@ const submit = () => {
 </script>
 
 <template>
-  <div>
-    <!-- お問い合わせページへのリンク -->
-    <h2 class="text-lg border-b border-blue-700 p-1">
-      <Link :href="route('mail.index')" class="text-blue-700 underline">
-        お問い合わせ
-      </Link>
-    </h2>
-
+  <div class="flex justify-center">
     <!-- 入力内容確認フォーム -->
     <form @submit.prevent="submit" method="post">
-      <h3 class="border-l-4 border-blue-700 p-1">ご入力いただいた内容をご確認ください</h3>
+      <h3 class="p-1">ご入力いただいた内容をご確認ください</h3>
       <!-- メールアドレス -->
       <div class="w-40 border-l-4 text-sm p-1 m-1">ご自身のメールアドレス</div>
       <div class="w-40">
@@ -53,10 +46,7 @@ const submit = () => {
         <pre class="p-1 m-1 text-sm w-full">{{ props.body }}</pre>
         <input type="hidden" name="message" v-model="form.body" />
       </div>
-      <!-- 送信先ID -->
-      <div class="w-40 border-l-4 text-sm p-1 m-1">送信先ID</div>
       <div class="w-40">
-        <pre class="p-1 m-1 text-sm w-full">{{ props.recipient_id }}</pre>
         <input type="hidden" name="recipient_id" v-model="form.recipient_id" />
       </div>
       <!-- 送信先名 -->
@@ -75,13 +65,7 @@ const submit = () => {
         お問い合わせを送信
       </button>
       <!-- 入力画面へ戻るボタン -->
-      <button
-        @click="back"
-        type="button"
-        class="border bg-gray-200 m-1 p-1 text-sm"
-      >
-        入力画面へ戻る
-      </button>
+      <Link href="/mail" class="block  bg-gray-300 py-2 px-4 rounded-md text-center">戻る</Link>
       <!-- 送信中止ボタン -->
       <button
         v-if="form.processing"
@@ -94,3 +78,11 @@ const submit = () => {
     </form>
   </div>
 </template>
+
+<style scoped>
+@media (max-width: 768px) {
+  .flex.justify-center {
+    justify-content: center;
+  }
+}
+</style>

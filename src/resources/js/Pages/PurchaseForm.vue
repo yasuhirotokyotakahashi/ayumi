@@ -37,7 +37,7 @@
       <!-- 購入ボタン -->
       <button @click="confirmPurchase" class="block mt-4 bg-blue-500 py-2 px-4 rounded-md text-white text-center">購入する</button>
       <!-- 戻るボタン -->
-      <Link href="/item" class="block mt-4 bg-gray-300 py-2 px-4 rounded-md text-center">戻る</Link>
+      <Link href="/" class="block mt-4 bg-gray-300 py-2 px-4 rounded-md text-center">戻る</Link>
     </div>
     
     <!-- 右側の選択アイテム表示 -->
@@ -55,6 +55,25 @@
     </div>
   </div>
 </template>
+
+<!-- スマートフォン用のスタイル -->
+<style scoped>
+@media (max-width: 768px) {
+  .flex-col {
+    flex-direction: column;
+  }
+  .md\:flex-row {
+    flex-direction: row;
+  }
+  .w-full {
+    width: 100%;
+  }
+  .md\:mr-4 {
+    margin-right: 0;
+  }
+}
+
+</style>
 
 <script setup>
 import { ref } from "vue";

@@ -131,7 +131,7 @@
         <!-- 登録ボタン -->
         <button
           type="submit"
-          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full"
         >
           登録
         </button>
@@ -139,6 +139,16 @@
     </div>
   </div>
 </template>
+
+<style scoped>
+@media (max-width: 768px) {
+  /* スマートフォン用のスタイル */
+  .w-full {
+    width: 100%;
+  }
+}
+</style>
+
 
 <script setup>
 import { useForm } from "@inertiajs/vue3";

@@ -30,20 +30,20 @@ const updateProfile = () => {
 <template>
   <div>
     <div><Navigation /></div>
-    <div class="max-w-md mx-auto p-6 bg-white shadow-md rounded-md mt-8">
+    <div class="max-w-xl mx-auto p-6 bg-white shadow-md rounded-md mt-8">
       <form @submit.prevent="confirmUpdate" class="space-y-4">
         <div>
           <div class="mb-4">
             <label for="postcode" class="block text-sm font-bold">郵便番号:</label>
-            <input id="postcode" v-model="form.postcode" type="text" class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:border-blue-500" />
+            <input id="postcode" v-model="form.postcode" type="text" class="w-full md:w-3/4 lg:w-1/2 mt-1 p-2 border rounded-md focus:outline-none focus:border-blue-500" />
           </div>
           <div class="mb-4">
             <label for="address" class="block text-sm font-bold">住所:</label>
-            <input id="address" v-model="form.address" type="text" class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:border-blue-500" />
+            <input id="address" v-model="form.address" type="text" class="w-full md:w-3/4 lg:w-1/2 mt-1 p-2 border rounded-md focus:outline-none focus:border-blue-500" />
           </div>
           <div class="mt-4">
             <label for="building" class="block text-sm font-bold">建物名:</label>
-            <textarea id="building" v-model="form.building" class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:border-blue-500"></textarea>
+            <textarea id="building" v-model="form.building" class="w-full md:w-3/4 lg:w-1/2 mt-1 p-2 border rounded-md focus:outline-none focus:border-blue-500"></textarea>
           </div>
         </div>
         <div>
@@ -54,3 +54,12 @@ const updateProfile = () => {
     </div>
   </div>
 </template>
+
+<style scoped>
+@media (max-width: 768px) {
+  /* スマートフォン用のスタイル */
+  .max-w-xl {
+    max-width: 100%;
+  }
+}
+</style>

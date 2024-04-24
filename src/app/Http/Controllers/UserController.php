@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileRequest;
+use App\Models\Comment;
 use App\Models\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +17,11 @@ class UserController extends Controller
 
         // ログインしているユーザーの情報を取得
         $user = auth()->user();
+
+        $userComments = Comment::where('user_id', $user->id)
+            ->with(['item', 'user'])
+            ->get();
+
 
         // ユーザーが購入した商品を取得
         $soldItems = $user->soldItems;
@@ -36,6 +42,7 @@ class UserController extends Controller
         // ビューにデータを渡してマイページをレンダリング
         return Inertia::render('MyPage', [
             'user' => $user,
+            'userComments' => $userComments,
             'soldItems' => $soldItems,
             'items' => $items,
             'permissions' => $permissions,

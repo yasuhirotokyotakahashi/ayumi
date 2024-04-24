@@ -6,7 +6,6 @@ use App\Http\Requests\CommentRequest;
 use App\Models\Comment;
 use App\Models\Item;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
@@ -47,5 +46,12 @@ class CommentController extends Controller
         ]);
 
         return redirect()->route('items.index');
+    }
+
+    public function delete($commentId)
+    {
+        $comment = Comment::findOrFail($commentId);
+        $comment->delete();
+        return redirect()->route('user.mypage');
     }
 }

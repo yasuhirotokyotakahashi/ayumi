@@ -3,13 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Mail\SendMail;
-use App\Models\Item;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Inertia\Inertia;
-use Illuminate\Contracts\Mail\Mailer;
 
 class MailController extends Controller
 {

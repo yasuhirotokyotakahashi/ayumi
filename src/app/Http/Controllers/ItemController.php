@@ -6,9 +6,7 @@ use App\Http\Requests\ItemsRequest;
 use App\Models\Category;
 use App\Models\Condition;
 use App\Models\Item;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class ItemController extends Controller
@@ -87,26 +85,14 @@ class ItemController extends Controller
     public function sellCreate(ItemsRequest $request)
     {
 
-        // フォームデータのバリデーションを行う
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'price' => 'required|numeric',
-            'description' => 'required|string',
-        ]);
-
         $userId = Auth::id();
-
-
         // 画像アップロード処理
         if ($request->file('img') !== null) {
             // 画像を保存するディレクトリを指定
             $image = $request->file('img');
-            $filename = $image->getClientOriginalName(); // オリジナルのファイル名を取得
-            $path = $image->storeAs('public/images', $filename); // ファイルをstorage/app/public/imagesに保存し、publicディスクを使用
+            $filename = $image->getClientOriginalName(); 
+            $path = $image->storeAs('public/images', $filename); 
 
-
-
-            // 保存された画像へのURLを取得
             $url = asset('storage/' . str_replace('public/', '', $path));
 
             // Eloquentを使用してデータベースに保存
@@ -118,11 +104,7 @@ class ItemController extends Controller
                 'condition_id' => $request->input('condition_id'),
                 'img_url' => $url,
                 'user_id' => $userId,
-                // 他のフォームフィールドに対応する項目を追加
             ]);
-
-            // ここに他の Item モデルに対する処理を追加することができます
-
 
             return redirect()->route('items.index');
         }
