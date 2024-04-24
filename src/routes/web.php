@@ -34,7 +34,7 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/dashboard', function () {
 //     return Inertia::render('Dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
-
+// 誰でも
 Route::get('/', [ItemController::class, 'index'])->name('items.index');
 Route::get('/item/{item:id}', [ItemController::class, 'detail'])->name('item.detail');
 
