@@ -139,7 +139,7 @@ coachtechフリマは、coachtechブランドのアイテムを出品する、�
 | created_at |         |
 | updated_at |         |
 
-| rple_has_permissionsテーブル | |
+| role_has_permissionsテーブル | |
 |------------|---------|
 | role_id    | FK      |
 | permission_id | FK   |
