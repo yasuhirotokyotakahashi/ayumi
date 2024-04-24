@@ -42,9 +42,9 @@ jobs:
     steps:
       - add_ssh_keys
       - run:
-          name: install composer
+          name: set PHP path
           command: |
-            ssh -o StrictHostKeyChecking=no -t webapp@${HOST_NAME} "curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer"
+            ssh -o StrictHostKeyChecking=no -t webapp@${HOST_NAME} "export PATH=/path/to/php/bin:$PATH" 
       - run:
           name: deploy
           command: |
