@@ -50,14 +50,14 @@ coachtechフリマは、coachtechブランドのアイテムを出品する、�
 - created_at
 - updated_at
 
-| Field      | Type    | Description       |
-|------------|---------|-------------------|
-| id         | PK      | User's ID         |
-| name       | PK      | User's name       |
-| email      | PK      | User's email      |
-| password   | PK      | User's password   |
-| created_at | PK      | Creation timestamp|
-| updated_at | PK      | Last update timestamp|
+| カラム     |         |
+|------------|---------|
+| id         | PK      |
+| name       |         |
+| email      |         |
+| password   |         |
+| created_at |         |
+| updated_at |         |
 
 **profilesテーブル**
 - id (主キー)
