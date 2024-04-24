@@ -42,6 +42,10 @@ jobs:
     steps:
       - add_ssh_keys
       - run:
+          name: install composer
+          command: |
+            ssh -o StrictHostKeyChecking=no -t webapp@${HOST_NAME} "curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer"
+      - run:
           name: deploy
           command: |
             ssh -o StrictHostKeyChecking=no -t webapp@${HOST_NAME} "cd /var/www/ayumi && \
