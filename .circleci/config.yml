@@ -38,7 +38,7 @@ jobs:
       SESSION_DRIVER: array
   deploy:
     docker:
-      - image: cimg/8.3-browsers
+      - image: cimg/8.1-browsers
     steps:
       - add_ssh_keys
       - run:
