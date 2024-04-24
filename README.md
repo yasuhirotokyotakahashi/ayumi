@@ -50,6 +50,13 @@ coachtechフリマは、coachtechブランドのアイテムを出品する、�
 - created_at
 - updated_at
 
+|usersテーブル|
+|:---:|:---:|
+|PK|id|
+|PK|name|
+|PK|email|
+|PK|pass|
+
 **profilesテーブル**
 - id (主キー)
 - user_id (外部キー、usersテーブルと関連)
