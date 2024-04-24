@@ -44,7 +44,7 @@ jobs:
       - run:
           name: deploy
           command: |
-            ssh -o StrictHostKeyChecking=no -t webapp@${HOST_NAME} "cd /var/www/ayumi && \
+            ssh -o StrictHostKeyChecking=no -t webapp@${HOST_NAME} "cd /var/www && \
               git pull origin main && \
               composer install -n --no-dev --prefer-dist && \
               npm install && \
