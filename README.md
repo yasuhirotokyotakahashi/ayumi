@@ -63,7 +63,6 @@ coachtechフリマは、coachtechブランドのアイテムを出品する、�
 | created_at |         |
 | updated_at |         |
 
-
 | itemsテーブル |      |
 |------------|---------|
 | id         | PK      |
@@ -77,7 +76,6 @@ coachtechフリマは、coachtechブランドのアイテムを出品する、�
 | created_at |         |
 | updated_at |         |
 
-
 | likesテーブル  |     |
 |------------|---------|
 | id         | PK      |
@@ -86,16 +84,22 @@ coachtechフリマは、coachtechブランドのアイテムを出品する、�
 | created_at |         |
 | updated_at |         |
 
-
 | commentsテーブル  |  |
 |------------|---------|
 | id         | PK      |
 | user_id    | FK      |
 | item_id    | FK      |
-|comment     |         |
+| comment    |         |
 | created_at |         |
 | updated_at |         |
 
+| sold_itemsテーブル | |
+|------------|---------|
+| id         | PK      |
+| user_id    | FK      |
+| item_id    | FK      |
+| created_at |         |
+| updated_at |         |
 
 | conditionsテーブル | |
 |------------|---------|
@@ -104,21 +108,20 @@ coachtechフリマは、coachtechブランドのアイテムを出品する、�
 | created_at |         |
 | updated_at |         |
 
+| categoriesテーブル | |
+|------------|---------|
+| id         | PK      |
+| category   |         |
+| created_at |         |
+| updated_at |         |
 
-
-**sold_itemテーブル**
-- id (主キー)
-- user_id (外部キー、usersテーブルと関連)
-- item_id(外部キー、itemsテーブルと関連)
-- created_at
-- updated_at
-
-**category_itemテーブル**
-- id (主キー)
-- item_id (外部キー、usersテーブルと関連)
-- category_id(外部キー、categoriesテーブルと関連)
-- created_at
-- updated_at
+| category_itemsテーブル | |
+|------------|---------|
+| id         | PK      |
+| user_id    | FK      |
+| category_id | FK     |
+| created_at |         |
+| updated_at |         |
 
 **rolesテーブル**
 - id (主キー)
