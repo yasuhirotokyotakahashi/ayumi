@@ -42,15 +42,7 @@ coachtechフリマは、coachtechブランドのアイテムを出品する、�
 ## テーブル設計
 以下は、主要なデータベーステーブルとそのフィールドの概要です。
 
-**usersテーブル**
-- id (主キー)
-- name
-- email
-- password
-- created_at
-- updated_at
-
-| カラム     |         |
+| usersテーブル  |     |
 |------------|---------|
 | id         | PK      |
 | name       |         |
@@ -59,28 +51,33 @@ coachtechフリマは、coachtechブランドのアイテムを出品する、�
 | created_at |         |
 | updated_at |         |
 
-**profilesテーブル**
-- id (主キー)
-- user_id (外部キー、usersテーブルと関連)
-- name
-- img_url
-- postcode
-- address
-- building
-- created_at
-- updated_at
 
-**itemsテーブル**
-- id (主キー)
-- name
-- price
-- description
-- img_url
-- user_id (外部キー、usersテーブルと関連)
-- category_id(外部キー、categoriesテーブルと関連)
-- condition_id(外部キー、conditionsテーブルと関連)
-- created_at
-- updated_at
+| profilesテーブル  |  |
+|------------|---------|
+| id         | PK      |
+| user_id    | FK      |
+| nickname   |         |
+| img_url    |         |
+|postcode    |         |
+|address     |         |
+|building    |         |
+| created_at |         |
+| updated_at |         |
+
+
+| itemsテーブル |      |
+|------------|---------|
+| id         | PK      |
+| user_id    | FK      |
+|category_id |FK       |
+|condition_id|FK       |
+| name       |         |
+| price      |         |
+|description |         |
+|img_url     |         |
+| created_at |         |
+| updated_at |         |
+
 
 **likesテーブル**
 - id (主キー)
