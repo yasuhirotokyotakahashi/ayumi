@@ -42,26 +42,38 @@ coachtechフリマは、coachtechブランドのアイテムを出品する、�
 ## テーブル設計
 以下は、主要なデータベーステーブルとそのフィールドの概要です。
 
-| usersテーブル  |     |      |conditionsテーブル||
-|------------|---------|      |------|-----|
-| id         | PK      |      |id|PK|
-| name       |         |      |condition||
-| email      |         |      |created_at||
-| password   |         |      |updated_at||
+| usersテーブル  |     |     
+|------------|---------|     
+| id         | PK      |    
+| name       |         |     
+| email      |         |      
+| password   |         |      
 | created_at |         |      
 | updated_at |         |      
+
+| profilesテーブル |   |
+|------------|---------|
+| id         | PK      |
+| user_id    | FK      |
+| nickname   |         |
+| img_url    |         |
+| postcode   |         |
+| address    |         |
+| buillding  |         |
+| created_at |         |
+| updated_at |         |
 
 
 | itemsテーブル |      |
 |------------|---------|
 | id         | PK      |
 | user_id    | FK      |
-|category_id |FK       |
-|condition_id|FK       |
+| category_id | FK     |
+| condition_id | FK    |
 | name       |         |
 | price      |         |
-|description |         |
-|img_url     |         |
+| description |        |
+| img_url     |        |
 | created_at |         |
 | updated_at |         |
 
@@ -84,11 +96,15 @@ coachtechフリマは、coachtechブランドのアイテムを出品する、�
 | created_at |         |
 | updated_at |         |
 
-**conditionsテーブル**
-- id (主キー)
-- condition
-- created_at
-- updated_at
+
+| conditionsテーブル | |
+|------------|---------|
+| id         | PK      |
+| condition  |         |
+| created_at |         |
+| updated_at |         |
+
+
 
 **sold_itemテーブル**
 - id (主キー)
