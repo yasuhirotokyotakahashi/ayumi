@@ -123,43 +123,32 @@ coachtechフリマは、coachtechブランドのアイテムを出品する、�
 | created_at |         |
 | updated_at |         |
 
-**rolesテーブル**
-- id (主キー)
-- user_id (外部キー、usersテーブルと関連)
-- item_id(外部キー、itemsテーブルと関連)
-- created_at
-- updated_at
+| rolesテーブル |      |
+|------------|---------|
+| id         | PK      |
+| name       |         |
+| guard_name |         |
+| created_at |         |
+| updated_at |         |
 
-**permissionsテーブル**
-- id (主キー)
-- user_id (外部キー、usersテーブルと関連)
-- item_id(外部キー、itemsテーブルと関連)
-- created_at
-- updated_at
+| permissionsテーブル | |
+|------------|---------|
+| id         | PK      |
+| name       |         |
+| guard_name |         |
+| created_at |         |
+| updated_at |         |
 
-**role_has_permissionsテーブル**
-- id (主キー)
-- user_id (外部キー、usersテーブルと関連)
-- item_id(外部キー、itemsテーブルと関連)
-- created_at
-- updated_at
+| rple_has_permissionsテーブル | |
+|------------|---------|
+| role_id    | FK      |
+| permission_id | FK   |
 
-**model_has_rolesテーブル**
-- id (主キー)
-- user_id (外部キー、usersテーブルと関連)
-- item_id(外部キー、itemsテーブルと関連)
-- created_at
-- updated_at
-
-**model_has_permissionsテーブル**
-- id (主キー)
-- user_id (外部キー、usersテーブルと関連)
-- item_id(外部キー、itemsテーブルと関連)
-- created_at
-- updated_at
-
-
-
+| model_has_rolesテーブル | |
+|------------|---------|
+| role_id    | FK      |
+| model_id(user_idと同意味) | FK |
+| model_type |         |
 
 ## ER図
 ![testdayo](https://github.com/yasuhirotokyotakahashi/ayumi/assets/128282431/347aa656-6efe-4451-8045-1e68ab30fd80)
