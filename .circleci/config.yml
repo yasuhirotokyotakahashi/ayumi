@@ -44,7 +44,7 @@ jobs:
       - run:
           name: set PHP path
           command: |
-            ssh -o StrictHostKeyChecking=no -t webapp@${HOST_NAME} "export PATH=/path/to/php/bin:$PATH" 
+            ssh -o StrictHostKeyChecking=no -t webapp@${HOST_NAME} "export PATH=/path/to/php/bin:$PATH && which php" 
       - run:
           name: deploy
           command: |
