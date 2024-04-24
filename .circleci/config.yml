@@ -36,31 +36,31 @@ jobs:
       MAIL_MAILER: array
       QUEUE_CONNECTION: sync
       SESSION_DRIVER: array
-#   deploy:
-#     docker:
-#       - image: cimg/php:8.1
-#     steps:
-#       - add_ssh_keys
-#       - run:
-#           name: deploy
-#           command: |
-#             ssh -o StrictHostKeyChecking=no -t webapp@${HOST_NAME} "cd /var/www/ayumi && \
-#               git pull origin main && \
-#               cd src && composer install -n --no-dev --prefer-dist && \
-#               cd src && npm install && \
-#               npm run build && \
-#               php artisan migrate --force && \
-#               php artisan config:cache"
+  deploy:
+    docker:
+      - image: cimg/php:8.1
+    steps:
+      - add_ssh_keys
+      - run:
+          name: deploy
+          command: |
+            ssh -o StrictHostKeyChecking=no -t webapp@${HOST_NAME} "cd /var/www/ayumi && \
+              git pull origin main && \
+              cd src && composer install -n --no-dev --prefer-dist && \
+              cd src && npm install && \
+              npm run build && \
+              php artisan migrate --force && \
+              php artisan config:cache"
 
-# workflows:
-#   version: 2
-#   build_deploy:
-#     jobs:
-#       - build
-#       - deploy:
-#           requires:
-#             - build
-#           filters:
-#             branches:
-#               only:
-#                 - main
+workflows:
+  version: 2
+  build_deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - main
