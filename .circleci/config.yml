@@ -38,16 +38,9 @@ jobs:
       SESSION_DRIVER: array
   deploy:
     docker:
-      - image: cimg/php:8.3.6
-        environment:
-          NODE_VERSION: "16"
+      - image: cimg/8.3.6-browsers
     steps:
       - add_ssh_keys
-      - run:
-          name: Install Node.js and npm
-          command: |
-            sudo curl -fsSL https://deb.nodesource.com/setup_${NODE_VERSION}.x | sudo -E bash -
-            sudo apt-get install -y nodejs
       - run:
           name: deploy
           command: |
