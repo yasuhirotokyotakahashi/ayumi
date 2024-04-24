@@ -48,6 +48,7 @@ jobs:
           command: |
             sudo curl -fsSL https://deb.nodesource.com/setup_${NODE_VERSION}.x | sudo -E bash -
             sudo apt-get install -y nodejs
+            sudo curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
       - run:
           name: deploy
           command: |
