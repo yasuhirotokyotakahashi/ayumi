@@ -45,8 +45,8 @@ jobs:
           command: |
             ssh -o StrictHostKeyChecking=no -t webapp@${HOST_NAME} "cd /var/www/ayumi && \
               git pull origin main && \
-              cd src && docker-compose down && \
-              docker-compose up -d"
+              cd ayumi && docker compose down && \
+              docker compose up -d"
 
 workflows:
   version: 2
