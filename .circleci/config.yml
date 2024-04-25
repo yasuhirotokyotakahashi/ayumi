@@ -44,7 +44,7 @@ jobs:
           name: deploy
           command: |
             ssh -o StrictHostKeyChecking=no -t webapp@${HOST_NAME} "cd /var/www/ayumi && \
-              git pull origin main && \
+              git reset --hard origin/main && \
               docker compose down && \
               docker compose up -d"
 
