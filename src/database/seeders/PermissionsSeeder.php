@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
@@ -34,19 +35,19 @@ class PermissionsSeeder extends Seeder
         $user1 = User::create([
             'name' => '管理者',
             'email' => 'admin@example.com',
-            'password' => bcrypt('xxxxxx'),
+            'password' => Hash::make('password'),
         ]);
 
         $user2 = User::create([
             'name' => '店舗代表者',
             'email' => 'shopowner@example.com',
-            'password' => bcrypt('xxxxxx'),
+            'password' => Hash::make('password'),
         ]);
 
         $user3 = User::create([
             'name' => '認証利用者',
             'email' => 'user@example.com',
-            'password' => bcrypt('xxxxxx'),
+            'password' => Hash::make('password'),
         ]);
 
         // UserにRoleを割り当て
