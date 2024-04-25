@@ -35,11 +35,6 @@ class MailController extends Controller
 
     public function create(Request $request)
     {
-
-
-        //問い合わせ内容を保存したりメールで送信する処理をここに記述
-        // メールを送信
-
         $recipientId = $request->input('recipient_id');
         $recipientEmail = User::findOrFail($recipientId)->email;
 

@@ -20,17 +20,15 @@ class PurchaseController extends Controller
             $user ? $user->soldItems()->get() : collect();
         $purchasedItemIds = $purchasedItems->pluck('id')->toArray();
 
-
         return Inertia::render('PurchaseForm', ['item' => $item, 'purchasedItems' => $purchasedItems, 'purchasedItemIds' => $purchasedItemIds]);
     }
 
     public function purchase(Item $item)
     {
-        // SoldItem モデルに新しいデータを作成して保存
         SoldItem::create([
-            'user_id' => auth()->id(), // ログインユーザーのIDなど、購入したユーザーのIDを指定
-            'item_id' => $item->id, // 購入したアイテムのIDを指定
-            'purchased_at' => Carbon::now(), // 現在の日時を設定
+            'user_id' => auth()->id(),
+            'item_id' => $item->id,
+            'purchased_at' => Carbon::now(), 
         ]);
         return redirect()->route('purchase.address');
     }
@@ -43,12 +41,11 @@ class PurchaseController extends Controller
             // ログインユーザーの権限を取得
             $permissions = $user->getAllPermissions()->pluck('name')->toArray();
         } else {
-            // ログインしていない場合はnullを設定するか、必要に応じてデフォルトの名前を設定します
+            // ログインしていない場合はnullを設定
             $userName = null;
         }
         $userId = Auth::id();
         $profile = Profile::where('user_id', $userId)->first();
-
         // プロフィールが存在しない場合は空のプロフィールを生成
         if (!$profile) {
             $profile = new Profile();
@@ -62,15 +59,12 @@ class PurchaseController extends Controller
     {
         $user = auth()->user();
 
-
-
         // プロフィールが存在する場合は更新、存在しない場合は新規作成
         if ($profile = $user->profile) {
             $profile->update([
                 'postcode' => $request->input('postcode'),
                 'address' => $request->input('address'),
                 'building' => $request->input('building'),
-                // 他のフォームフィールドに対応する項目を追加
             ]);
         } else {
             $userId = Auth::id();
@@ -79,11 +73,8 @@ class PurchaseController extends Controller
                 'address' => $request->input('address'),
                 'building' => $request->input('building'),
                 'user_id' => $userId,
-                // 他のフォームフィールドに対応する項目を追加
             ]);
         }
-
-        // ここに他の Item モデルに対する処理を追加することができます
 
         return redirect()->route('items.index');
     }

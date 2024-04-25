@@ -20,7 +20,6 @@ class StoreRepresentativeController extends Controller
 
         $roleAssignedUsers = ModelHasRole::with('user', 'role')->get();
 
-
         return Inertia::render('ShopOwner/Index', [
             'users' => $users,
             'roles' => $roles,
@@ -63,6 +62,6 @@ class StoreRepresentativeController extends Controller
         // ユーザーから役割を削除
         $user->removeRole($role);
 
-        return redirect()->back()->with('success', '役割を割り当てました。');
+        return redirect()->back()->with('success', '役割を削除しました。');
     }
 }

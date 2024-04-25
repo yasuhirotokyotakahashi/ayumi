@@ -21,11 +21,8 @@ class UserController extends Controller
         $userComments = Comment::where('user_id', $user->id)
             ->with(['item', 'user'])
             ->get();
-
-
         // ユーザーが購入した商品を取得
         $soldItems = $user->soldItems;
-
         // ユーザーが出品した商品を取得
         $items = $user->items;
 
@@ -35,11 +32,10 @@ class UserController extends Controller
             // ログインユーザーの権限を取得
             $permissions = $user->getAllPermissions()->pluck('name')->toArray();
         } else {
-            // ログインしていない場合はnullを設定するか、必要に応じてデフォルトの名前を設定します
+            // ログインしていない場合はnullを設定
             $userName = null;
         }
 
-        // ビューにデータを渡してマイページをレンダリング
         return Inertia::render('MyPage', [
             'user' => $user,
             'userComments' => $userComments,
@@ -69,15 +65,12 @@ class UserController extends Controller
         if ($request->file('img') !== null) {
             // 画像を保存するディレクトリを指定
             $image = $request->file('img');
-            $filename = $image->getClientOriginalName(); // オリジナルのファイル名を取得
-            $path = $image->storeAs('public/images', $filename); // ファイルをstorage/app/public/imagesに保存し、publicディスクを使用
+            $filename = $image->getClientOriginalName(); 
+            $path = $image->storeAs('public/images', $filename); 
 
-            // 保存された画像へのURLを取得
             $url = asset('storage/' . str_replace('public/', '', $path));
 
             $user = auth()->user();
-
-
             // プロフィールが存在する場合は更新、存在しない場合は新規作成
             if ($profile = $user->profile) {
                 $profile->update([
@@ -86,7 +79,6 @@ class UserController extends Controller
                     'address' => $request->input('address'),
                     'building' => $request->input('building'),
                     'img_url' => $url,
-                    // 他のフォームフィールドに対応する項目を追加
                 ]);
             } else {
                 $userId = Auth::id();
@@ -97,11 +89,8 @@ class UserController extends Controller
                     'building' => $request->input('building'),
                     'img_url' => $url,
                     'user_id' => $userId,
-                    // 他のフォームフィールドに対応する項目を追加
                 ]);
             }
-
-            // ここに他の Item モデルに対する処理を追加することができます
 
             return redirect()->route('user.mypage');
         }
