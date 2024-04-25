@@ -42,7 +42,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    // 上記はデフォルト
+    // 上記はデフォルトで入っていました。
 
     Route::post('/item/like/{item:id}', [LikeController::class, 'create'])->name('like.create');
     Route::post('/item/unlike/{item:id}', [LikeController::class, 'destroy'])->name('like.destroy');
