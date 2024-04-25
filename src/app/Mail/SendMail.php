@@ -3,7 +3,6 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
@@ -17,14 +16,13 @@ class SendMail extends Mailable
     public $body;
     public $recipientEmail;
 
-    public $subject = '新しいユーザーが登録されました';
+    public $subject = 'お世話になっております。';
 
     /**
      * Create a new message instance.
      */
     public function __construct($mail, $body)
     {
-        //
         $this->mail = $mail;
         $this->body = $body;
     }

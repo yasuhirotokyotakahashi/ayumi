@@ -1,12 +1,14 @@
 <script setup>
-import { Link, useForm } from "@inertiajs/vue3";
+import { useForm } from "@inertiajs/vue3";
 import Navigation from "@/Pages/Navigation.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
+import InputError from '@/Components/InputError.vue';
 
 const props = defineProps({
   item:Object,
   users: Object,
   permissions: Object,
+  errors:Object,
 });
 
 const form = useForm({
@@ -39,6 +41,7 @@ const submitComment = (id) => {
         <label for="comment" class="block text-sm font-medium text-gray-700">コメント:</label>
         <textarea id="comment" v-model="form.comment" name="comment" rows="3" class="input-text mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" required></textarea>
       </div>
+      <InputError class="mt-2" :message="form.errors.comment" />
       <PrimaryButton type="submit" class="w-full">コメントを投稿</PrimaryButton>
     </form>
   </div>

@@ -2,10 +2,12 @@
 import { useForm } from "@inertiajs/vue3";
 import { Link } from "@inertiajs/vue3";
 import Navigation from "@/Pages/Navigation.vue";
+import InputError from '@/Components/InputError.vue';
 
 const props = defineProps({
   profile: Object,
   permissions: Object,
+  errors:Object,
 });
 
 const form = useForm({
@@ -37,10 +39,12 @@ const updateProfile = () => {
             <label for="postcode" class="block text-sm font-bold">郵便番号:</label>
             <input id="postcode" v-model="form.postcode" type="text" class="w-full md:w-3/4 lg:w-1/2 mt-1 p-2 border rounded-md focus:outline-none focus:border-blue-500" />
           </div>
+          <InputError class="mt-2" :message="form.errors.postcode" />
           <div class="mb-4">
             <label for="address" class="block text-sm font-bold">住所:</label>
             <input id="address" v-model="form.address" type="text" class="w-full md:w-3/4 lg:w-1/2 mt-1 p-2 border rounded-md focus:outline-none focus:border-blue-500" />
           </div>
+          <InputError class="mt-2" :message="form.errors.address" />
           <div class="mt-4">
             <label for="building" class="block text-sm font-bold">建物名:</label>
             <textarea id="building" v-model="form.building" class="w-full md:w-3/4 lg:w-1/2 mt-1 p-2 border rounded-md focus:outline-none focus:border-blue-500"></textarea>

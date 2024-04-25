@@ -1,9 +1,11 @@
 <script setup>
 import { useForm } from "@inertiajs/vue3";
 import { Link } from "@inertiajs/vue3";
+import InputError from '@/Components/InputError.vue';
 
 const props = defineProps({
   profile: Object,
+  errors:Object,
 });
 
 const form = useForm({
@@ -52,14 +54,17 @@ const updateProfile = () => {
           <div class="mb-4">
             <label for="nickname" class="block text-sm font-bold text-gray-700">ニックネーム:</label>
             <input id="nickname" v-model="form.nickname" type="text" class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:border-blue-500" />
+            <InputError class="mt-2" :message="form.errors.nickname" />
           </div>
           <div class="mb-4">
             <label for="postcode" class="block text-sm font-bold text-gray-700">郵便番号:</label>
             <input id="postcode" v-model="form.postcode" type="text" class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:border-blue-500" />
+            <InputError class="mt-2" :message="form.errors.postcode" />
           </div>
           <div class="mb-4">
             <label for="address" class="block text-sm font-bold text-gray-700">住所:</label>
             <input id="address" v-model="form.address" type="text" class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:border-blue-500" />
+            <InputError class="mt-2" :message="form.errors.address" />
           </div>
           <div class="mb-4">
             <label for="building" class="block text-sm font-bold text-gray-700">建物名:</label>
