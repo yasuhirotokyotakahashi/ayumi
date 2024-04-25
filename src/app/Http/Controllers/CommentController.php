@@ -15,8 +15,6 @@ class CommentController extends Controller
     {
 
         $item = Item::find($id);
-
-        // ログインしているかどうかをチェック
         $user = Auth::user();
         $permissions = [];
 
@@ -24,7 +22,7 @@ class CommentController extends Controller
             // ログインユーザーの権限を取得
             $permissions = $user->getAllPermissions()->pluck('name')->toArray();
         } else {
-            // ログインしていない場合はnullを設定するか、必要に応じてデフォルトの名前を設定します
+            // ログインしていない場合はnullを設定
             $userName = null;
         }
 
@@ -34,10 +32,7 @@ class CommentController extends Controller
 
     public function create(CommentRequest $request, $id)
     {
-
-        // 現在ログインしているユーザーのIDを取得
         $userId = Auth::id();
-
         // コメントを保存
         Comment::create([
             'user_id' => $userId,

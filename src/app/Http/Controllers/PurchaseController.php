@@ -7,7 +7,6 @@ use App\Models\Item;
 use App\Models\Profile;
 use App\Models\SoldItem;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 

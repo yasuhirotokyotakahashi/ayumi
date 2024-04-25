@@ -43,7 +43,7 @@ class ItemController extends Controller
             // ログインユーザーの権限を取得
             $permissions = $user->getAllPermissions()->pluck('name')->toArray();
         } else {
-            // ログインしていない場合はnullを設定するか、必要に応じてデフォルトの名前を設定します
+            // ログインしていない場合はnullを設定
             $userName = null;
         }
         $likedItems =

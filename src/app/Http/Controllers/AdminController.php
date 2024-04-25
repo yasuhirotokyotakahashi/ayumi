@@ -10,7 +10,6 @@ class AdminController extends Controller
 {
     public function index()
     {
-        // ログインしているかどうかをチェック
         $user = auth()->user();
         $permissions = [];
 
@@ -18,7 +17,7 @@ class AdminController extends Controller
             // ログインユーザーの権限を取得
             $permissions = $user->getAllPermissions()->pluck('name')->toArray();
         } else {
-            // ログインしていない場合はnullを設定するか、必要に応じてデフォルトの名前を設定します
+            // ログインしていない場合はnullを設定
             $userName = null;
         }
         $users = User::all();
@@ -34,7 +33,6 @@ class AdminController extends Controller
 
     public function confirm()
     {
-        // ログインしているかどうかをチェック
         $user = auth()->user();
         $permissions = [];
 
@@ -42,7 +40,7 @@ class AdminController extends Controller
             // ログインユーザーの権限を取得
             $permissions = $user->getAllPermissions()->pluck('name')->toArray();
         } else {
-            // ログインしていない場合はnullを設定するか、必要に応じてデフォルトの名前を設定します
+            // ログインしていない場合はnullを設定
             $userName = null;
         }
         $users = User::all();

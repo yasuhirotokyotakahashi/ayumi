@@ -49,7 +49,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function profile(Request $request)
+    public function profile()
     {
         $userId = Auth::id();
         $profile = Profile::where('user_id', $userId)->first();

@@ -14,7 +14,6 @@ class ModelHasRole extends Model
         'role_id',
     ];
 
-    // リレーションを設定
     public function user()
     {
         return $this->belongsTo(User::class, 'model_id');

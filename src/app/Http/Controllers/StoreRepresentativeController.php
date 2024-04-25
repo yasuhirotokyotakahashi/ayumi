@@ -10,7 +10,7 @@ use Spatie\Permission\Models\Role;
 
 class StoreRepresentativeController extends Controller
 {
-    public function inviteStaff(Request $request)
+    public function inviteStaff()
     {
         $users = User::all();
         $roles = Role::all();
