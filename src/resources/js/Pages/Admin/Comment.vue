@@ -31,7 +31,6 @@
 </style>
 
 <script setup>
-import { useForm } from "@inertiajs/vue3";
 import Navigation from "@/Pages/Navigation.vue";
 
 defineProps({

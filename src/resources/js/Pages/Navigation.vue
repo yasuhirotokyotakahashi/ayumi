@@ -117,10 +117,8 @@
 
 <script setup>
 import { Link as NavLink } from "@inertiajs/vue3";
-import { usePage } from '@inertiajs/inertia-vue3';
 import { useForm } from '@inertiajs/inertia-vue3';
 
-const { $inertia } = usePage();
 
 
 const form = useForm();

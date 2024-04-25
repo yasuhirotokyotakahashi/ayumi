@@ -81,7 +81,6 @@
 </style>
 
 <script setup>
-import { usePage } from "@inertiajs/vue3";
 import { useForm } from "@inertiajs/vue3";
 import { ref } from "vue";
 import { Link as NavLink } from "@inertiajs/vue3";
