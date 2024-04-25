@@ -60,8 +60,8 @@ class ItemController extends Controller
             'item' => $item,
             'category' => $category,
             'condition' => $condition,
-            'commentsCount' => $commentsCount, // コメントの総数をビューに渡す
-            'likesCount' => $likesCount, // いいねの総数をビューに渡す
+            'commentsCount' => $commentsCount, // コメントの総数
+            'likesCount' => $likesCount, // いいねの総数
             'likedItemIds' => $likedItemIds,
             'permissions' => $permissions,
 
@@ -88,14 +88,11 @@ class ItemController extends Controller
         $userId = Auth::id();
         // 画像アップロード処理
         if ($request->file('img') !== null) {
-            // 画像を保存するディレクトリを指定
             $image = $request->file('img');
             $filename = $image->getClientOriginalName(); 
             $path = $image->storeAs('public/images', $filename); 
-
             $url = asset('storage/' . str_replace('public/', '', $path));
 
-            // Eloquentを使用してデータベースに保存
             Item::create([
                 'name' => $request->input('name'),
                 'price' => $request->input('price'),

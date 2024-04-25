@@ -12,7 +12,6 @@ class MailController extends Controller
 {
     public function index()
     {
-
         $user = auth()->user();
         $permissions = [];
 
@@ -20,10 +19,9 @@ class MailController extends Controller
             // ログインユーザーの権限を取得
             $permissions = $user->getAllPermissions()->pluck('name')->toArray();
         } else {
-            // ログインしていない場合はnullを設定するか、必要に応じてデフォルトの名前を設定します
+            // ログインしていない場合はnullを設定
             $userName = null;
         }
-
         $users = User::all();
         return Inertia::render('Mail/MailForm', ['users' => $users, 'permissions' => $permissions]);
     }
@@ -35,8 +33,6 @@ class MailController extends Controller
         return Inertia::render('Mail/Confirm', ['mail'  => $request->mail, 'body'  => $request->body, 'recipient_id'  => $request->recipient_id, 'recipient_name' => $recipientName,]);
     }
 
-
-    //送信
     public function create(Request $request)
     {
 
@@ -51,7 +47,6 @@ class MailController extends Controller
         $body = $request->input('body');
 
         Mail::to($recipientEmail)->send(new SendMail($mail, $body));
-
 
         return Inertia::render('Mail/Complete');
     }

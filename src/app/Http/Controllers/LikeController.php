@@ -10,8 +10,6 @@ class LikeController extends Controller
 {
     public function create($itemId)
     {
-
-
         // 現在ログインしているユーザーのIDを取得
         $userId = Auth::id();
         Like::create([
@@ -24,8 +22,6 @@ class LikeController extends Controller
 
     public function destroy($itemId)
     {
-
-
         // 現在ログインしているユーザーのIDを取得
         $userId = Auth::id();
 
@@ -37,7 +33,7 @@ class LikeController extends Controller
             $existingFavorite->delete();
         }
 
-        return Redirect::route('item.detail', ['item' => $itemId]); // プロフィールが存在しない場合はプロフィール作成ページにリダイレクト
+        return Redirect::route('item.detail', ['item' => $itemId]); 
 
     }
 }
