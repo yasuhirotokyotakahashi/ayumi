@@ -191,12 +191,9 @@ composer install
 npm install --save-dev vite laravel-vite-plugin @vitejs/plugin-vue
 
 php artisan key:generate
-php artisan migrate
-php artisan db:seed
-
 npm run build
 
 ```
 
 ##　無事localhostでアクセスできると思います。
-必要に応じて、管理者、店舗代表者、認証ユーザーという役割を作成したのでphp artisan db:seed PermissionsSeederやphp artisan storage:linkなどもご使用ください。
+必要に応じて、php artisan storage:linkなどもご使用ください。
