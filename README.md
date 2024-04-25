@@ -43,6 +43,8 @@ coachtechフリマは、coachtechブランドのアイテムを出品する、�
 ## 使用技術（実行環境）
 - フレームワーク：Laravel [Laravelバージョン:10.10]
 - PHP：[PHPバージョン: 8.3.6]
+- laravel-permission": "^6.4"
+- laravel/breeze": "^1.29"
 - Node：[Nodeバージョン: 20.12.2]
 - Vue:[Vueバージョン:3.4.0]
 - Vite:[Viteバージョン:5.2.8]
