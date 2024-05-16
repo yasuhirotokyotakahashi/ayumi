@@ -36,27 +36,27 @@ jobs:
       MAIL_MAILER: array
       QUEUE_CONNECTION: sync
       SESSION_DRIVER: array
-  deploy:
-    machine: true
-    steps:
-      - add_ssh_keys
-      - run:
-          name: deploy
-          command: |
-            ssh -o StrictHostKeyChecking=no -t webapp@${HOST_NAME} "cd /var/www/ayumi && \
-              git reset --hard origin/main && \
-              docker compose down && \
-              docker compose up -d"
+#   deploy:
+#     machine: true
+#     steps:
+#       - add_ssh_keys
+#       - run:
+#           name: deploy
+#           command: |
+#             ssh -o StrictHostKeyChecking=no -t webapp@${HOST_NAME} "cd /var/www/ayumi && \
+#               git reset --hard origin/main && \
+#               docker compose down && \
+#               docker compose up -d"
 
-workflows:
-  version: 2
-  build_deploy:
-    jobs:
-      - build
-      - deploy:
-          requires:
-            - build
-          filters:
-            branches:
-              only:
-                - main
+# workflows:
+#   version: 2
+#   build_deploy:
+#     jobs:
+#       - build
+#       - deploy:
+#           requires:
+#             - build
+#           filters:
+#             branches:
+#               only:
+#                 - main

@@ -48,8 +48,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/item/unlike/{item:id}', [LikeController::class, 'destroy'])->name('like.destroy');
     Route::get('/purchase/{item:id}', [PurchaseController::class, 'index'])->name('purchase.index');
     Route::post('/purchase/{item:id}', [PurchaseController::class, 'purchase'])->name('purchase.purchase');
-    Route::get('/address', [PurchaseController::class, 'address'])->name('purchase.address');
-    Route::post('/address/ok', [PurchaseController::class, 'updateAddress'])->name('purchase.updateAddress');
+    Route::get('/purchase/address', [PurchaseController::class, 'address'])->name('purchase.address');
+    Route::post('/purchase/address', [PurchaseController::class, 'updateAddress'])->name('purchase.updateAddress');
 
     Route::get('/mypage', [UserController::class, 'mypage'])->name('user.mypage');
     Route::get('/mypage/profile', [UserController::class, 'profile'])->name('user.profile');
